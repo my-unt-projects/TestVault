@@ -17,5 +17,10 @@
      - Database Design
      - Testing
 3. **Arup Datta**
+ - **Skills**:
+     - Backend development
+     - Database Schema Design
+     - Frontend development
+     - Testing backend apis
 
 4. **Vaishnavi Sabna**
