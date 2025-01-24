@@ -12,7 +12,10 @@
      - Testing
 
 2. **Jarin Tasnim Ishika**
-
+ - **Skills**:
+     - Programming
+     - Database Design
+     - Testing
 3. **Arup Datta**
 
 4. **Vaishnavi Sabna**
