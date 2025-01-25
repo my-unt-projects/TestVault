@@ -24,3 +24,9 @@
      - Testing backend apis
 
 4. **Vaishnavi Sabna**
+5. **Nhi Le**
+- **Skills**:
+     -  Leading the Team
+     -   Data Analytics/ Data Engineering
+     -   Database Design
+     -   Programming
