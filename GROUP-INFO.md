@@ -30,3 +30,10 @@
      -   Data Analytics/ Data Engineering
      -   Database Design
      -   Programming
+6. **Rachelle Blosser**
+-**Skills**:
+     -  Requirements Analysis
+     -  Proofing and Editing
+     -  Math
+
+  
