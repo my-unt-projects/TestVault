@@ -1,0 +1,22 @@
+1. README File: TestVault/README.md
+2. Meeting minutes: TestVault/docs/minutes
+
+3. Overall folder structure of the project:
+
+TestVault/
+|-- src/                                       # Source code
+│   |-- main/
+│   │   |-- java/com/fantasticsix/testvault/   # Java source code
+│   │   │   |-- controller/                    # REST controllers
+│   │   │   |-- TestVaultApplication.java      # Main application entry point
+│   │   |-- resources/
+│   │   │   |-- application.properties         # Application config
+│   │   │   |-- templates/                     # HTML templates (Thymeleaf)
+│   |-- test/                                  # Test cases
+│   │   |-- java/com/fantasticsix/testvault/   # Test packages
+│   │   │   |-- TestVaultApplicationTests.java # Main Test Class
+|-- docs/
+|  |-- planning/                               # Planning documents
+|  |-- reports/                                # Project reports
+|  |-- meetings/                               # Meeting minutes
+|-- README.md                                  # Readme file
