@@ -1,1 +1,2 @@
 # TestVault
+TestVault is an application designed and built for testers and developers in the software industry. Testers and developers write test cases and TestVault organizes test cases. TestVault enables collaboration between team members who are also testing and developing. Sharing test cases and self-management of test cases is possible through organization into modules and TestVault's features.
