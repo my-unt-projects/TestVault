@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Optional;
 
@@ -41,7 +42,11 @@ public class SecurityConfiguration {
                 .rememberMe(rememberMe -> rememberMe
                         .key("uniqueAndSecret")
                         .tokenValiditySeconds(86400))
-                .logout(logout -> logout.deleteCookies("JSESSIONID"));
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
+                        .logoutSuccessUrl("/login?logout").permitAll());
         return http.build();
     }
 
