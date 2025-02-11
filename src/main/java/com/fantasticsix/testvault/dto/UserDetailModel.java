@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 
 public class UserDetailModel implements UserDetails {
 
-    private final String username;
+    private final String email;
+    private final String name;
     private final String password;
     private final List<GrantedAuthority> authorities;
 
     public UserDetailModel(User user) {
-        this.username = user.getName();
+        this.email = user.getEmail();
+        this.name = user.getName();
         this.password = user.getPassword();
         this.authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
@@ -28,6 +30,10 @@ public class UserDetailModel implements UserDetails {
         return this.authorities;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String getPassword() {
         return this.password;
@@ -35,7 +41,7 @@ public class UserDetailModel implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override

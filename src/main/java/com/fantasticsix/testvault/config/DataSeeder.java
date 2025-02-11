@@ -42,10 +42,10 @@ public class DataSeeder {
         }
 
         // Check and create the admin user
-        if (userRepository.findByEmailIgnoreCase("admin@testvault.com").isEmpty()) {
+        if (userRepository.findByEmailIgnoreCase("john@testvault.com").isEmpty()) {
             User admin = new User();
-            admin.setName("admin");
-            admin.setEmail("admin@testvault.com");
+            admin.setName("John Doe");
+            admin.setEmail("john@testvault.com");
             admin.setPassword(passwordEncoder.encode("12345"));
             admin.setRoles(Collections.singletonList(roleAdmin));
 
@@ -53,10 +53,10 @@ public class DataSeeder {
         }
 
         // Check and create the normal user
-        if (userRepository.findByEmailIgnoreCase("user@testvault.com").isEmpty()) {
+        if (userRepository.findByEmailIgnoreCase("mary@testvault.com").isEmpty()) {
             User user = new User();
-            user.setName("user");
-            user.setEmail("user@testvault.com");
+            user.setName("Mary Smith");
+            user.setEmail("mary@testvault.com");
             user.setPassword(passwordEncoder.encode("12345"));
             user.setRoles(Collections.singletonList(roleUser));
 
