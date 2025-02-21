@@ -73,9 +73,42 @@ End Date: 3/17/25\
 Deliverable 3 due\
 Duration: 20 days
 
+<table>
+  <tbody>
+    <tr>
+      <th align="center">Week 1</br>02/25/25-02/03/25</th>
+      <th align="center">Week 2</br>02/04/25-03/10/25</th>
+      <th align="center">Week 3</br>03/11/25-03/17/25</th>
+    </tr>
+    <tr>
+      <td>
+         <ul>
+            <li>Create project structure</li>
+            <li>Integrate third-partylibraries</li>
+            <li>Design Database (DB) schema </li>
+            <li>Finalize boilerplate</li>
+            <li>Testing</li>
+         <td>
+         <ul>
+            <li>Create user interface (UI) design and HTMLtemplate for test case</li>
+            <li>Create Read Update (CRUD) operation</li>
+            <li>Code Back-end for create/update/delete of test cases</li>
+            <li>integrate UI and backend model for test case</li>
+            <li>Testing</li>
+         </td>
+      <td > 
+         <ul>
+            <li>Code organization of test cases into different modules and projects</li>
+            <li>Code clone test cases from existing test cases</li>
+            <li>Testing</li>
+            <li>Create necessary docs</li>
+         </ul>
+      </td>
+    </tr>
+  
+  </tbody>
+</table>
 
-|Week 1</br>02/25/25-02/04/25|Week2</br>02/04/25-03/11/25|Week3</br>03/11/25-03/17/25|
-|------|-----|-----|
 
 Phase 2\
 Start Date: 03/18/2025\
@@ -94,5 +127,6 @@ Deliverable 5 due\
 
 |Week 1</br>04/08/25-04/14/25|Week2</br>04/15/25-04/21/24|Week3</br>04/22/25-04/28/25|
 |------|-----|-----|
+
 
 
