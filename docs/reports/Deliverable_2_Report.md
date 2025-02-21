@@ -1,79 +1,45 @@
 **2. Written Requirements Specifications**
 
 **2a. Functional requirements**
+
 List of Features
-(1) Create test cases
-(2) Edit test cases
-(3) Delete test cases
-(4) Assign test case to modules
-(5) Clone test cases
-(6) Assign test case to multiple projects
-(7) Attachments to test case
-(8) Tag test cases
-(9) Filter and search test cases
-(10) Assign test cases to team members
-(11) Role-based access control
-(12) Comment test cases 
-(13) Dashboards 
-(14) Export Report
-(15) Notify Users: overdue test run or pending reviews
-(16) Notify users: assigned tasks or deadlines
+1. Create test case
+2. Edit test cases
+3. Delete test cases
+4. Assign test case to modules
+5. Clone test cases
+6. Assign test case to multiple projects
+7. Attachments to test case
+8. Tag test cases
+9. Filter and search test cases
+10. Assign test cases to team members
+11. Role-based access control
+12. Comment test cases
+13. Dashboards
+14. Export Report
+15. Notify Users: overdue test run or pending reviews
+16. Notify users: assigned tasks or deadlines
 
 **Feature List Additions or Changes:**
 
-View test case
-View all test cases
-Notify users has four different notification types, either this should be broken in to four or kept as one feature
+1. View test case
+2. View all test cases
+3. Notify users
+   spans 15 & 16
+    either this should be broken into four features or kept as one feature for organization sake?
+4. Assign/Tag test cases
+   spans 4, 6, 8, 10
+   how are these different?
 
 **Table**
 | Feature Number | Feature Name | Description | Questions | Priority |
 | --------------- | --------------- | --------------- |--------------- |--------------- |
 | Row 1 Column 1 | Row 1 Column 2 | Row 1 Column 3 |
-|1| Create test cases| The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable. </br></br>Fields include:</br>module</br>project</br>test run date</br>review date |1) Would the view of all test cases be another feature?</br>2) Would the view of a singular test case be a feature?</br>3) Is the test case an input form or is it an option for the user to upload a txt file?</br>4) If it is an input form, does the user have the option to add or change the fields or is it preset?</br>5)How is the test case named?</br> Does the user select or input the name of the test case, or is it an automatically assigned number?</br>6)Is view test case a separate feature?</br>Are the fields correct?|
-
-(2) Edit test cases 
-
-Description:
-The user will be able to edit an existing test case. Editing of test cases will occur one at a time. The User will be able to search for a specific test case, select it for viewing and then the user will press an edit button. The fields of the test case are prepopulated with the existing information which was previously entered, but can be edited by the user. Once finished editting, the user will then click on a save button to save the test case.
- 
- Questions:
- 
- Is the edit test case view just the create view but with prepopulated information?
- 
- Will there be a select test case button in the view of test cases or an edit test case button in the view of test cases so the user can go straight to editting?
- 
- Is there a button to cancel the edits made and revert to the original?
- 
- 
-(3) Delete test cases
-
-Description: The user will be able to delete test cases. The user will search for a specific test case, select the case for deletion and then select a delete button. Once deleted there is no retrieval of the test case.
-
-Questions: 
-Similair to the edit feature, will there be a delete button next to the test cases in the view test cases display or will the the delete button be in a single test case view?
-
-Is there a way to select and delete multiple cases?
-
-(4) Organize test cases into modules
-
-Description:
-The user will be able to assign a test case to a module. The user will select a module for a test case to be assigned to. 
-
-Questions: 
-Does a project need to be created prior to creation of a test case?
-
-Does a module need to be created prior to creation of a project?
-
-Could there be a default module and project group so the user can create a test case without assigning a project or module to it?
-
-Is create module and create project on the "home page" along with reporting notification and assignment functions?
-
-Is create module and create project another feature?
-
-Are there drop downs in create and edit test cases which are prepopulated with 
-existing modules and projects that the user can select?
-
-(5) Clone test cases
+|1| Create test cases| The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable. </br></br>Fields include:</br>module</br>project</br>test run date</br>review date |1) Would the view of all test cases be another feature?</br>2) Would the view of a singular test case be a feature?</br>3) Is the test case an input form or is it an option for the user to upload a txt file?</br>4) If it is an input form, does the user have the option to add or change the fields or is it preset?</br>5)How is the test case named?</br> 6)Does the user select or input the name of the test case, or is it an automatically assigned number?</br>7))Is view test case a separate feature?</br>8)Are the fields correct?|High|
+|2| Edit test cases |The user will be able to edit an existing test case. Editing of test cases will occur one at a time. The User will be able to search for a specific test case, select it for viewing and then the user will press an edit button. The fields of the test case are prepopulated with the existing information which was previously entered, but can be edited by the user. Once finished editting, the user will then click on a save button to save the test case.|1) Is the edit test case view just the create view but with prepopulated information?</br>2)Will there be a select test case button in the view of test cases or an edit test case button in the view of test cases so the user can go straight to editting?</br>3)Is there a button to cancel the edits made and revert to the original?|Medium
+|3|Delete test cases| The user will be able to delete test cases. The user will search for a specific test case, select the case for deletion and then select a delete button. Once deleted there is no retrieval of the test case.|1) Similair to the edit feature, will there be a delete button next to the test cases in the view test cases display or will the the delete button be in a single test case view? </br>Is there a way to select and delete multiple cases?|Medium
+|4| Organize test cases into modules|The user will be able to assign a test case to a module. The user will select a module for a test case to be assigned to.|1)Does a project need to be created prior to creation of a test case?</br>Does a module need to be created prior to creation of a project?</br>Could there be a default module and project group so the user can create a test case without assigning a project or module to it?</br>Is create module and create project on the "home page" along with reporting notification and assignment functions?</br>Is create module and create project another feature?</br>Are there drop downs in create and edit test cases which are prepopulated with existing modules and projects that the user can select?|Medium
+|5| Clone test cases
 
 Description:
 The user will be able to clone a test case. The user will select a test case in the view test cases display and select a clone button. This action creates a new test case with the same data for the fields of the original test case.
