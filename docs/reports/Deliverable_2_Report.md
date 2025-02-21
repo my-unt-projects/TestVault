@@ -1,3 +1,8 @@
+**1. Overall Structure**
+Description of Structure
+
+Diagram of Structure
+
 **2. Written Requirements Specifications**
 
 **2a. Functional requirements**
@@ -31,7 +36,7 @@ List of Features
    spans Features 4, 6, 8, 10
    how are these different?
 
-**Table**
+**Functional Requirements Table**
 | Feature Number | Feature Name | Description | Questions | Priority |
 | --------------- | --------------- | --------------- |--------------- |--------------- |
 |1| Create test cases| The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable. </br></br>Fields include:</br>module</br>project</br>test run date</br>review date |1) Would the view of all test cases be another feature?</br>2) Would the view of a singular test case be a feature?</br>3) Is the test case an input form or is it an option for the user to upload a txt file?</br>4) If it is an input form, does the user have the option to add or change the fields or is it preset?</br>5)How is the test case named?</br> 6)Does the user select or input the name of the test case, or is it an automatically assigned number?</br>7))Is view test case a separate feature?</br>8)Are the fields correct?|High|
@@ -52,9 +57,42 @@ List of Features
 |16| Remind users with notifications for assigned tasks or deadlines|The user will receive an email notification when a task or deadline has been added to a test case they are assigned. The user will also recieve an email notification at midnight beginning the day a task or deadline is due.|1)What are tasks?</br>Are deadlines the dates associated with test runs or reviews or for something separate?</br>Is this then a field option in the edit/create tests?</br>Is this a "task" field that has a description input field for text and has a date assignment attached to it? Is the task anything the user wants?</br>Is this a "deadline" field that has a description input field for text and has a date assignment attached to it? Is the deadline anything the user wants?|Medium|
 
 **2b. Non-Functional Requirements:**
-**Table**
+**Non-Functional Requirements Table**
 | Feature Number | Feature Name | Description | Questions | Priority |
 | --------------- | --------------- | --------------- |--------------- |--------------- |
 |1| User Login|The user is able to login using an email and password. There is a screen for an admin to create accounts for a user with email and password details.|Is this correct? Can admins invite users or is this not something included here?|High
 |2|Performance|Pages will display in under 500 milliseconds or under 1 second. Filter and display of test cases will be under 5 minutes.|----|Medium
 |3|Security|Security is handled with role based access control. The separation of developer and admin priviledges means less people have access to hire functions which minimizes the potential risk or attack space. Please see feature 11 for what privledges developer and admins have.|Are priviledges across admin and developer correct in Feature 11?|High
+
+**2c. User Interfaces:**
+
+**3. Timeline**\
+Phase 1\
+Start Date: 02/25/25\
+End Date: 3/17/25\
+Deliverable 3 due\
+Duration: 20 days
+
+
+|Week 1</br>02/25/25-02/04/25|Week2</br>02/04/25-03/11/25|Week3</br>03/11/25-03/17/25|
+|------|-----|-----|
+
+Phase 2\
+Start Date: 03/18/2025\
+End Date: 04/07/2025\
+Deliverable 4 due\
+Duration: 20 days\
+
+|Week 1</br>03/18/25-03/24/25|Week2</br>03/25/25-03/31/25|Week3</br>04/01/25-04/07/25|
+|------|-----|-----|
+
+Phase 3\
+Start Date: 04/08/2025\
+End Date: 04/28/2025\
+Duration: 3 weeks\
+Deliverable 5 due\
+
+|Week 1</br>04/08/25-04/14/25|Week2</br>04/15/25-04/21/24|Week3</br>04/22/25-04/28/25|
+|------|-----|-----|
+
+
