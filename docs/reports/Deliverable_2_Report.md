@@ -34,79 +34,15 @@ List of Features
 **Table**
 | Feature Number | Feature Name | Description | Questions | Priority |
 | --------------- | --------------- | --------------- |--------------- |--------------- |
-| Row 1 Column 1 | Row 1 Column 2 | Row 1 Column 3 |
 |1| Create test cases| The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable. </br></br>Fields include:</br>module</br>project</br>test run date</br>review date |1) Would the view of all test cases be another feature?</br>2) Would the view of a singular test case be a feature?</br>3) Is the test case an input form or is it an option for the user to upload a txt file?</br>4) If it is an input form, does the user have the option to add or change the fields or is it preset?</br>5)How is the test case named?</br> 6)Does the user select or input the name of the test case, or is it an automatically assigned number?</br>7))Is view test case a separate feature?</br>8)Are the fields correct?|High|
 |2| Edit test cases |The user will be able to edit an existing test case. Editing of test cases will occur one at a time. The User will be able to search for a specific test case, select it for viewing and then the user will press an edit button. The fields of the test case are prepopulated with the existing information which was previously entered, but can be edited by the user. Once finished editting, the user will then click on a save button to save the test case.|1) Is the edit test case view just the create view but with prepopulated information?</br>2)Will there be a select test case button in the view of test cases or an edit test case button in the view of test cases so the user can go straight to editting?</br>3)Is there a button to cancel the edits made and revert to the original?|Medium
 |3|Delete test cases| The user will be able to delete test cases. The user will search for a specific test case, select the case for deletion and then select a delete button. Once deleted there is no retrieval of the test case.|1) Similair to the edit feature, will there be a delete button next to the test cases in the view test cases display or will the the delete button be in a single test case view? </br>Is there a way to select and delete multiple cases?|Medium
 |4| Organize test cases into modules|The user will be able to assign a test case to a module. The user will select a module for a test case to be assigned to.|1)Does a project need to be created prior to creation of a test case?</br>Does a module need to be created prior to creation of a project?</br>Could there be a default module and project group so the user can create a test case without assigning a project or module to it?</br>Is create module and create project on the "home page" along with reporting notification and assignment functions?</br>Is create module and create project another feature?</br>Are there drop downs in create and edit test cases which are prepopulated with existing modules and projects that the user can select?|Medium
-|5| Clone test cases
-
-Description:
-The user will be able to clone a test case. The user will select a test case in the view test cases display and select a clone button. This action creates a new test case with the same data for the fields of the original test case.
-
-Questions:
-Does the user name the new test case? If so, is this a popup window that asks the user to name the teset case?
-
-Or does the new test case have a name which is a version of the original test case?
-
-(6) Use test cases across different projects
-
-Description:
-The user can assign a test case to multiple projects. In the create or edit test case view, the drop down assigning a test case to a project allows multiple selections of projects.
-
-Questions:
-Is this how it is?
-
-(7) Attachments to test case
-
-Description:
-The user is able to attach files  to a test case. The files can be x,y,z format. 
-
-Questions:
-
-What file formats are attached?
-
-Where is the user able to attach the file? Is it in the create test case form? Is there an option to add an attachment next to a test case in the display of all test cases? Is there a button to add an attachment in the edit test case view?
-
-Is there an icon that shows a test case has an attachment in the view display of all test cases?
-
-Is there an icon at the bottom of a test case in the view test case display? 
-
-Can the user open the attachment?
-
-Can the user download the attachment?
-
-(8) Tag test cases
-
-Description: The user can assign test cases certain tags. These include priority, module, and functionality. In the create and edit view there are drop downs with prepopulated values the users can select for the test case.
-
-Priority: Low, Medium, High, Critical
-Module:?
-Functionality: To Do, In progress, Done
-
-Questions:
-Are they drop downs, or should they be like tags displayed that the user can toggle?
-
-Can the user assign tags in the view all test cases display?
-
-What are the prepopulated values for module?
-
-Are the other prepopulated values correct?
-
-(9) Filter and search test cases
-
-Description: The user can search and filter test cases by any of the following meta information:
-
-priority
-project
-module
-functionality 
-name
-
-Questions:
-Is this option on the home screen or navigation menu?
-
-Does this have its own screen devoted to it?
+|5| Clone test cases|The user will be able to clone a test case. The user will select a test case in the view test cases display and select a clone button. This action creates a new test case with the same data for the fields of the original test case.|Does the user name the new test case? If so, is this a popup window that asks the user to name the teset case?|Or does the new test case have a name which is a version of the original test case?|Low
+6|Use test cases across different projects|The user can assign a test case to multiple projects. In the create or edit test case view, the drop down assigning a test case to a project allows multiple selections of projects.|Is this how it is?|Low
+7|Attachments to test case|The user is able to attach files  to a test case. The files can be x,y,z format. |1)What file formats are attached?</br>2)Where is the user able to attach the file? Is it in the create test case form?</br>3) Is there an option to add an attachment next to a test case in the display of all test cases?</br>4) Is there a button to add an attachment in the edit test case view?</br>5)Is there an icon that shows a test case has an attachment in the view display of all test casesIs there an icon at the bottom of a test case in the view test case display?</br>6)Can the user open the attachment?</br>7/Can the user download the attachment?|Low
+|8| Tag test cases| The user can assign test cases certain tags. These include priority, module, and functionality. In the create and edit view there are drop downs with prepopulated values the users can select for the test case.</br>Field Values</br>Priority: Low, Medium, High, Critical</br>Module:?</br>Functionality: To Do, In progress, Done|1)Are they drop downs, or should they be like tags displayed that the user can toggle?2)Can the user assign tags in the view all test cases display?3)What are the prepopulated values for module?4)Are the other prepopulated values correct?|Low
+|9| Filter and search test cases|The user can search and filter test cases by any of the following meta information:</br>priority</br>project</br>module</br>functionality </br>name|1)Is this option on the home screen or navigation menu?</br> 2)Does this have its own screen devoted to it?|High|
 
 (10) Assign test cases to team members
 
@@ -175,20 +111,10 @@ Is this a "task" field that has a description input field for text and has a dat
 
 Is this a "deadline" field that has a description input field for text and has a date assignment attached to it? Is the deadline anything the user wants?
 
-2b. Non-Functional Requirements:
-
-1) User Login
-
-The user is able to login using an email and password. There is a screen for an admin to create accounts for a user with email and password details.
-
-Questions:
-
-Is this correct? Can admins invite users or is this not something included here?
-
-2) Performance:
-
-Pages will display in under 500 milliseconds or under 1 second. Filter and display of test cases will be under 5 minutes. 
-
-Security:
-
-Security is handled with role based access control. The separation of developer and admin privliges means less people have access to hire functions which minimizes the potential risk or attack space. Please see feature 11 for what privledges developer and admins have.
+**2b. Non-Functional Requirements:**
+**Table**
+| Feature Number | Feature Name | Description | Questions | Priority |
+| --------------- | --------------- | --------------- |--------------- |--------------- |
+|1| User Login|The user is able to login using an email and password. There is a screen for an admin to create accounts for a user with email and password details.|Is this correct? Can admins invite users or is this not something included here?|High
+|2|Performance|Pages will display in under 500 milliseconds or under 1 second. Filter and display of test cases will be under 5 minutes.|----|Medium
+|3|Security|Security is handled with role based access control. The separation of developer and admin priviledges means less people have access to hire functions which minimizes the potential risk or attack space. Please see feature 11 for what privledges developer and admins have.|Are priviledges across admin and developer correct in Feature 11?|High
