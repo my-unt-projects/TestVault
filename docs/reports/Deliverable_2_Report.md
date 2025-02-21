@@ -116,8 +116,39 @@ End Date: 04/07/2025\
 Deliverable 4 due\
 Duration: 20 days\
 
-|Week 1</br>03/18/25-03/24/25|Week2</br>03/25/25-03/31/25|Week3</br>04/01/25-04/07/25|
-|------|-----|-----|
+<table>
+  <tbody>
+    <tr>
+      <th align="center">Week 1</br>03/18/25-03/24/25</th>
+      <th align="center">Week 2</br>03/25/25-03/31/25</th>
+      <th align="center">Week 3</br>04/01/25-04/07/25/th>
+    </tr>
+    <tr>
+      <td>
+         <ul>
+            <li>Code to add attachments to test cases</li>
+            <li>Code to tag test cases and filtering capabilities</li>
+            
+         <td>
+         <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+           
+         </td>
+      <td > 
+         <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+         </ul>
+      </td>
+    </tr>
+  
+  </tbody>
+</table>
+
 
 Phase 3\
 Start Date: 04/08/2025\
