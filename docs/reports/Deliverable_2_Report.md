@@ -1,34 +1,35 @@
-2. Written Requirements Specifications
+**2. Written Requirements Specifications**
 
-2a. Functional requirements
+**2a. Functional requirements**
+List of Features
+(1) Create test cases
+(2) Edit test cases
+(3) Delete test cases
+(4) Assign test case to modules
+(5) Clone test cases
+(6) Assign test case to multiple projects
+(7) Attachments to test case
+(8) Tag test cases
+(9) Filter and search test cases
+(10) Assign test cases to team members
+(11) Role-based access control
+(12) Comment test cases 
+(13) Dashboards 
+(14) Export Report
+(15) Notify Users: overdue test run or pending reviews
+(16) Notify users: assigned tasks or deadlines
 
-1) Create test cases
+**Feature List Additions or Changes:**
 
-Description: 
-The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable.
+View test case
+View all test cases
+Notify users has four different notification types, either this should be broken in to four or kept as one feature
 
-Fields include:
-module
-project
-test run date
-review date
-
-
-Questions:
-Would the view of all test cases be another feature?
-
-Would the view of a singular test case be a feature?
-
-Is the test case an input form or is it an option for the user to upload a txt file?
-
-If it is an input form, does the user have the option to add or change the fields or is it preset?
-
-How is the test case named? Does the user select or input the name of the test case, or is it an automatically assigned number?
-
-Is view test case a separate feature?
-
-Are the fields correct?
-
+**Table**
+| Feature Number | Feature Name | Description | Questions | Priority |
+| --------------- | --------------- | --------------- |--------------- |--------------- |
+| Row 1 Column 1 | Row 1 Column 2 | Row 1 Column 3 |
+|1| Create test cases| The user will create a new test case. The user will push a create button which will display a test case input form with certain fields for the user to input data (see below). Once the user is finished inputing data, then the user pressed a save button. The test case is viewable. </br></br>Fields include:</br>module</br>project</br>test run date</br>review date |1) Would the view of all test cases be another feature?</br>2) Would the view of a singular test case be a feature?</br>3) Is the test case an input form or is it an option for the user to upload a txt file?</br>4) If it is an input form, does the user have the option to add or change the fields or is it preset?</br>5)How is the test case named?</br> Does the user select or input the name of the test case, or is it an automatically assigned number?</br>6)Is view test case a separate feature?</br>Are the fields correct?|
 
 (2) Edit test cases 
 
@@ -48,7 +49,8 @@ The user will be able to edit an existing test case. Editing of test cases will 
 
 Description: The user will be able to delete test cases. The user will search for a specific test case, select the case for deletion and then select a delete button. Once deleted there is no retrieval of the test case.
 
-Questions: Similair to the edit feature, will they be a delete button next to the test cases in the view test cases display or will the the delete button be in a single test case view?
+Questions: 
+Similair to the edit feature, will there be a delete button next to the test cases in the view test cases display or will the the delete button be in a single test case view?
 
 Is there a way to select and delete multiple cases?
 
@@ -217,10 +219,10 @@ Questions:
 
 Is this correct? Can admins invite users or is this not something included here?
 
-Performance:
+2) Performance:
 
-Pages should display in under one second. Filter and display records should be under one minute. 
+Pages will display in under 500 milliseconds or under 1 second. Filter and display of test cases will be under 5 minutes. 
 
 Security:
 
-Security is handled with role based access control. Please see feature 11.
+Security is handled with role based access control. The separation of developer and admin privliges means less people have access to hire functions which minimizes the potential risk or attack space. Please see feature 11 for what privledges developer and admins have.
