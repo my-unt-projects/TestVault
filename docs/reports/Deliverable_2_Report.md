@@ -1,7 +1,78 @@
 **1. Overall Structure**
-Description of Structure
+**Diagram of Structure**
+![Untitled diagram-2025-02-22-045417](https://github.com/user-attachments/assets/f7b8bb0a-de4b-419d-8bee-dbc73887799e)
 
-Diagram of Structure
+**Description of the system structure**
+
+System Structure of TestVault
+1. Overview
+Test Vault helps users create test cases quickly then run them efficiently without missing key organizational aspects. The solution permits all test stakeholders to work effectively through a step-by-step approach for handling test cases.
+ 
+Our project requires an architectural diagram built on this system description.
+•​Descriptions of all major components and subsystems.
+ 
+2. System Components
+The system divides its operations into different units of work that connect with one another to enhance test case tracking and running.
+A. User Roles & Access Control (RBAC)
+The platform grants role-based permission access through RBAC for different user position groups.
+* Roles Included:
+* Administrator – Manages user access, configurations, and system settings.
+* The QA staff develops test cases then adapts and runs them in QA system functions.
+* The developer checks the tests given to them and responds with their feedback.
+* The manager oversees test activities while checking performance results.
+* Users access the system through Frontend UI by logging in and working according to their assigned job functions.
+ 
+B. Frontend (User Interface)
+The frontend gives direct system access to all users.
+* Developed Using: JavaScript, HTML5, CSS3, Thymeleaf.
+* Key Features:
+* The system allows users to make changes to their test case records through its Create Read Update Delete actions also known as CRUD.
+* Role-based Access Management
+* Notifications & Alerts
+* Interactive Dashboard for Statistics
+* The Frontend part of the system sends instructions to the Backend API which handles the task requests.
+C. Backend API
+Companies develop the system using Spring Boot (Java) to run it as their central processing unit.
+* Responsibilities:
+* Our solution controls every step of the test handling process from start to finish.
+* The backend handles all API communications that come from the user interface of the application.
+* Manages authentication and authorization for role-based access control.
+* Handles data processing and interactions with the database.
+* The backend system connects to both UI, database, testing unit and external integration features.
+ 
+D. Database (MySQL/PostgreSQL)
+* The system database has a regular design with test case actions data.
+* Data Stored Includes:
+* Test Case Information (Title, Description, Tags, Priority, Status).
+* The system keeps track of test runs with their outcome results plus time needed and user assignments.
+* User Roles & Permissions (Admin, QA, Developer, Manager).
+* Attachments & Logs (Screenshots, Error Reports, Files).
+* The Backend API gets and saves records to the database.
+ 
+E. Reporting & Analytics
+The reporting module enables stakeholders to view data visualization results and requested data reports.
+•Key Features:
+You can download test results as PDF CSV and Excel files from this system.
+o​Displays pass/fail trends of test cases.
+o​Shows summary dashboards with key performance metrics.
+The system fetches database data through the backend API to show users what they need.
+
+F. External Integrations
+The system links to other applications to speed up test case management operations.
+•Connected Services:
+* The GitHub platform links with commit functions to manage version changes and test case information records.
+* Trello connects with tasks to follow assigned test cases through their work progression.
+* The system sends automatic email alerts to notify users about test cases awaiting action plus late tasks and failed test tests.
+* Through its Backend API the system links to external systems to run smooth integration.
+ 
+3. System Workflow & Data Flow
+* The system serves test cases to each user after successful authentication.
+* Users submit test case details and the information reaches the Back End API.
+* The system backend handles requests by making updates to the database.
+* Test Case Engine runs planned tests while data goes into the Database for results logging.
+* Users create reports by accessing stored Database data.
+* The system delivers notifications when test cases become due or produce failure results.
+* Data from GitHub Trello and Email systems automatically updates to our platform.
 
 **2. Written Requirements Specifications**
 
