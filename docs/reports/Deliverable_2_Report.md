@@ -1,6 +1,11 @@
 **1. Overall Structure**
-**Diagram of Structure**
+**Diagram of the system structure**
+
+![Untitled Diagram drawio](https://github.com/user-attachments/assets/b6588614-c004-4644-84b7-c7e5bf765fac)
+
 ![Untitled diagram-2025-02-22-045417](https://github.com/user-attachments/assets/f7b8bb0a-de4b-419d-8bee-dbc73887799e)
+
+![Untitled diagram-2025-02-22-054852](https://github.com/user-attachments/assets/24aa9ea7-3979-4d97-b3c2-ef4d95e7518f)
 
 **Description of the system structure**
 
@@ -59,6 +64,7 @@ The system fetches database data through the backend API to show users what they
 
 F. External Integrations
 The system links to other applications to speed up test case management operations.
+
 •Connected Services:
 * The GitHub platform links with commit functions to manage version changes and test case information records.
 * Trello connects with tasks to follow assigned test cases through their work progression.
@@ -72,7 +78,7 @@ The system links to other applications to speed up test case management operatio
 * Test Case Engine runs planned tests while data goes into the Database for results logging.
 * Users create reports by accessing stored Database data.
 * The system delivers notifications when test cases become due or produce failure results.
-* Data from GitHub Trello and Email systems automatically updates to our platform.
+* Data from Email systems automatically updates to our platform.
 
 **2. Written Requirements Specifications**
 
