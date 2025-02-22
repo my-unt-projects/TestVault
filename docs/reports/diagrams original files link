@@ -1,0 +1,66 @@
+system structure diagram files link:-
+
+mermaid chart:-
+https://www.mermaidchart.com/app/projects/2a7df6c1-b1f2-48e9-a5f8-72ab5c13964a/diagrams/6f6d803c-5bf0-481b-82ea-780566898ae5/version/v0.1/edit
+
+https://www.mermaidchart.com/play?utm_campaign=showme2024&utm_medium=cpc&utm_source=showMe#pako:eNp9UktPAjEQ_iuTPRhMMB6MFw8my8OIAQMsxIN4qGVYGpd2bcsCMf53p49dlBh2D_06_R7T2f1KuFpicpesCrXja6YtzHoLCfTMDeqpKtC8LhKHwW_gAlLO0ZhF8gZXV9ATGrmNNSrcw4NW0qJckqyGMB9A64lVLONalLYNj7PR8LYN3Sy7acNsfdhggWx1SZ4hO11uhCQDv8akEZMspwZcL66NDK0VMg-hHcY_QmZEkI4pMys1UaCjlD2aByNN3IhiQGqMyKWznmIlcGdghsZClxn8ExJcelhhoUrv0-Do1NXIrJ_VvFx6dM5pkpLFJI3a_h75NoinWCptz4ubEZM0o9WQ6nNLgn-49WiIOtbKfTA8ofeYZe8U5O4UIbRGh2wyPI6vOXCJVunYqtWCpmD88dnoAfWbaz-VF2HXntvfW9SSFRnqSnD_y9Wlhi-UNE0Tp4Lj9Z-VFSvBAz-Yb5ioic7Yba9_06B28fbhTb5_AMoABGc
+
+draw.io:-
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.16">
+<diagram name="TestVault Architecture" id="9fBkla2shdXcGOtRbwF3">
+<mxGraphModel dx="1008" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="1IlCdi9mqK7UaguugROU-1" value="Test Case Management System" style="shape=rectangle;fillColor=#D9D9D9;strokeColor=#000000;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+<mxGeometry x="350" y="50" width="280" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-2" value="User Roles & Access Control (RBAC)" style="shape=rectangle;fillColor=#B2EBF2;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="50" y="120" width="200" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-3" value="Admin, QA, Manager, Developer" style="shape=ellipse;fillColor=#E3F2FD;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+<mxGeometry x="90" y="190" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-4" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-3" target="1IlCdi9mqK7UaguugROU-2">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-5" value="Frontend (UI)" style="shape=rectangle;fillColor=#FFCC80;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="300" y="120" width="220" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-6" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-5" target="1IlCdi9mqK7UaguugROU-1">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-7" value="Backend API" style="shape=rectangle;fillColor=#C5E1A5;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="540" y="120" width="220" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-8" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-7" target="1IlCdi9mqK7UaguugROU-1">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-9" value="Database (MySQL)" style="shape=rectangle;fillColor=#FFAB91;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="780" y="120" width="220" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-10" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-9" target="1IlCdi9mqK7UaguugROU-7">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-13" value="Reporting & Analytics" style="shape=rectangle;fillColor=#A5D6A7;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="540" y="200" width="220" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-14" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-13" target="1IlCdi9mqK7UaguugROU-7">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-15" value="External Integrations" style="shape=rectangle;fillColor=#81D4FA;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+<mxGeometry x="780" y="200" width="220" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-16" value="Email, Notifications" style="shape=ellipse;fillColor=#B3E5FC;strokeColor=#000000;fontSize=10;" vertex="1" parent="1">
+<mxGeometry x="820" y="270" width="140" height="50" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-17" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-16" target="1IlCdi9mqK7UaguugROU-15">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="1IlCdi9mqK7UaguugROU-18" edge="1" parent="1" source="1IlCdi9mqK7UaguugROU-15" target="1IlCdi9mqK7UaguugROU-7">
+<mxGeometry relative="1" as="geometry"/>
+</mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>
