@@ -9,7 +9,7 @@
 
 **Description of the system structure**
 
-System Structure of TestVault
+**System Structure of TestVault**
 1. Overview
 Test Vault helps users create test cases quickly then run them efficiently without missing key organizational aspects. The solution permits all test stakeholders to work effectively through a step-by-step approach for handling test cases.
  
@@ -45,7 +45,7 @@ Companies develop the system using Spring Boot (Java) to run it as their central
 * Handles data processing and interactions with the database.
 * The backend system connects to both UI, database, testing unit and external integration features.
  
-D. Database (MySQL/PostgreSQL)
+D. Database (MySQL)
 * The system database has a regular design with test case actions data.
 * Data Stored Includes:
 * Test Case Information (Title, Description, Tags, Priority, Status).
