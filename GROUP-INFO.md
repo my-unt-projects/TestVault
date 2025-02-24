@@ -24,7 +24,10 @@
      - Testing backend apis
 
 4. **Vaishnavi Sabna**
-5. **Nhi Le**
+    - configuration management lead
+    - Reviewing the document
+    - Reviewing high level task-breakdown
+6. **Nhi Le**
 - **Skills**:
      -  Leading the Team
      -   Data Analytics/ Data Engineering
