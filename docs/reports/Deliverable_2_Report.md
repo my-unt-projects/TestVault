@@ -2,10 +2,16 @@
 **Diagram of the system structure**
 
 ![Untitled Diagram drawio](https://github.com/user-attachments/assets/b6588614-c004-4644-84b7-c7e5bf765fac)
+*High level design components*
 
 ![Untitled diagram-2025-02-22-045417](https://github.com/user-attachments/assets/f7b8bb0a-de4b-419d-8bee-dbc73887799e)
+*Modules in the porjects*
 
 ![Untitled diagram-2025-02-22-054852](https://github.com/user-attachments/assets/24aa9ea7-3979-4d97-b3c2-ef4d95e7518f)
+*Overall structure of the application*
+
+![TestVault Diagrams-Page-2 drawio (1)](https://github.com/user-attachments/assets/e21ec969-03e2-4eb1-9d38-fe710c1dff35)
+*Class Diagram*
 
 **Description of the system structure**
 
