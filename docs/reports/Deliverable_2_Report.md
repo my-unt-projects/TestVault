@@ -133,15 +133,28 @@ List of Features
 |15| Alert users for overdue test run or pending reviews|The user will recieve an email notification if the test run date has passed or if the review date has passed. The test run date and review date are set when the user creates a test case. At midnight of the date set, the user will recieve an email notification that the date has passed|----|Medium
 |16| Remind users with notifications for assigned tasks or deadlines|The user will receive an email notification when a task or deadline has been added to a test case they are assigned. The user will also recieve an email notification at midnight beginning the day a task or deadline is due.|1)What are tasks?</br>Are deadlines the dates associated with test runs or reviews or for something separate?</br>Is this then a field option in the edit/create tests?</br>Is this a "task" field that has a description input field for text and has a date assignment attached to it? Is the task anything the user wants?</br>Is this a "deadline" field that has a description input field for text and has a date assignment attached to it? Is the deadline anything the user wants?|Medium|
 
-**2b. Non-Functional Requirements:**
+**2b. Non-Functional Requirements**
 **Non-Functional Requirements Table**
 | Feature Number | Feature Name | Description | Questions | Priority |
 | --------------- | --------------- | --------------- |--------------- |--------------- |
 |1| User Login|The user is able to login using an email and password. There is a screen for an admin to create accounts for a user with email and password details.|Is this correct? Can admins invite users or is this not something included here?|High
 |2|Performance|Pages will display in under 500 milliseconds or under 1 second. Filter and display of test cases will be under 5 minutes.|----|Medium
 |3|Security|Security is handled with role based access control. The separation of developer and admin priviledges means less people have access to hire functions which minimizes the potential risk or attack space. Please see feature 11 for what privledges developer and admins have.|Are priviledges across admin and developer correct in Feature 11?|High
-
-**2c. User Interfaces:**
+<table>
+   <tbody>
+      <tr>
+         <th align="center">Number</th>
+         <th align="center">Feature Name</th>
+         <th align="center">Description</th>
+         <th align="center">Questions</th>
+         <th align="center">Priority</th>
+      </tr>
+      <tr>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
+**2c. User Interfaces**
 
 **3. Timeline**\
 Phase 1\
@@ -172,6 +185,7 @@ Duration: 20 days
             <li>Code Back-end for create/update/delete of test cases</li>
             <li>integrate UI and backend model for test case</li>
             <li>Testing</li>
+         </ul>
          </td>
       <td > 
          <ul>
@@ -191,38 +205,38 @@ Phase 2\
 Start Date: 03/18/2025\
 End Date: 04/07/2025\
 Deliverable 4 due\
-Duration: 20 days\
+Duration: 20 days
 
 <table>
   <tbody>
     <tr>
       <th align="center">Week 1</br>03/18/25-03/24/25</th>
       <th align="center">Week 2</br>03/25/25-03/31/25</th>
-      <th align="center">Week 3</br>04/01/25-04/07/25/th>
-    </tr>
-    <tr>
+      <th align="center">Week 3</br>04/01/25-04/07/25</th>
+   </tr>
+   <tr>
       <td>
          <ul>
             <li>Code to add attachments to test cases</li>
             <li>Code to tag test cases and filtering capabilities</li>
-            
+         </ul>
+         </td>
          <td>
          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-           
-         </td>
-      <td > 
+            <li>Code role-based access control</li>
+            <li>Testing</li>
+            <li>Add seed data for test cases and types of users</li>
+         </ul>
+         </td>  
+         <td>
          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Code test case assignment to team members and send notification email to the assignee</li>
+            <li>Write documentation</li>
+            <li>Integration Test</li>
+            <li>Performance Test</li>  
          </ul>
       </td>
     </tr>
-  
   </tbody>
 </table>
 
@@ -230,11 +244,114 @@ Duration: 20 days\
 Phase 3\
 Start Date: 04/08/2025\
 End Date: 04/28/2025\
-Duration: 3 weeks\
-Deliverable 5 due\
+Duration: 20 days\
+Deliverable 5 due
 
-|Week 1</br>04/08/25-04/14/25|Week2</br>04/15/25-04/21/24|Week3</br>04/22/25-04/28/25|
-|------|-----|-----|
+<table>
+  <tbody>
+    <tr>
+      <th align="center">Week 1</br>04/08/25-04/14/25</th>
+      <th align="center">Week 2</br>04/15/25-04/21/24</th>
+      <th align="center">Week 3</br>04/22/25-04/28/25</th>
+    <tr>
+      <td>
+         <ul>
+            <li>Code discussion thread for each test case</li>
+            <li>Implementing alerting and notification</li>
+            <li>Create Summary Dashboard</li>
+         <td>
+         <ul>
+            <li>Build report generation in PDF, Excel, CSV, etc</li>
+            <li>Test</li>
+            <li>Document Integration/Performance/User Acceptance Test(UAT) </li>
+            <li>Release Application Beta Version</li>
+         </td>
+      <td > 
+         <ul>
+            <li>Review Final Product</li>
+            <li>Test full application</li>
+            <li>Write document</li>
+            <li>Finalize reports</li>
+         </ul>
+      </td>
+    </tr>
+  
+  </tbody>
+</table>
 
+**4. Member Contribution Table**
+<table>
+  <tbody>
+    <tr>
+      <th align="center">Member Name</th>
+      <th align="center">Contribution Description</th>
+      <th align="center">Overall Contribution</th>
+       <th align="center">Note(if applicable)</th>
+    </tr>  
+    <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+     <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+     <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+     <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+     <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+     <tr>
+      <td>
+         </td>
+      <td >
+      </td>
+       <td >
+      </td>
+       <td >
+      </td>
+    </tr>
+  
+  </tbody>
+</table>
+
+**5. Updated Meeting Minutes**
 
 
