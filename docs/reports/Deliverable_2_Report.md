@@ -7,6 +7,8 @@
 
 ![Untitled diagram-2025-02-22-054852](https://github.com/user-attachments/assets/24aa9ea7-3979-4d97-b3c2-ef4d95e7518f)
 
+
+
 **Description of the system structure**
 
 **System Structure of TestVault**
@@ -145,6 +147,8 @@ List of Features
 </table>
 
 **2c. User Interfaces**
+
+![TestVault Diagrams-Page-2.drawio (1).png](https://github.com/my-unt-projects/TestVault/blob/main/TestVault%20Diagrams-Page-2.drawio%20(1).png)
 
 **3. Timeline**\
 Phase 1\
