@@ -1,0 +1,30 @@
+notes from Team 4 about Deliverable 2 
+
+diagrams were not clear
+make clear that test/fail assignment is manual 
+
+review and describe roles
+
+review and describe front end
+
+review and describe non-functional requirements
+
+what is a primary challenge for phase 1?
+discuss about distributing features and assignments to teams in the future
+
+discuss local/cloud deployment
+
+specific third party tools: email service- gmail
+
+
+
+
+
+
+
+
+
+
+
+
+
