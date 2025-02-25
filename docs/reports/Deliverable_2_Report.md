@@ -306,6 +306,10 @@ Deliverable 5 due
       <td>Jarin Tasnim Ishika
          </td>
       <td >
+        <ul>
+        <li>Helped to create diagrams</li>
+       <li></li>
+       </ul>
       </td>
        <td >17%
       </td>
