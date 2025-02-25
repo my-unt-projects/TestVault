@@ -296,6 +296,8 @@ Deliverable 5 due
       <td>Arup Datta
          </td>
       <td >
+       <li> Reviewed the document </li>
+        <li> Contributed to the design phase </li>
       </td>
        <td >17%
       </td>
