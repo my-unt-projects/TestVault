@@ -283,61 +283,65 @@ Deliverable 5 due
        <th align="center">Note(if applicable)</th>
     </tr>  
     <tr>
-      <td>
+      <td> Md Afikur Rahman Khan
          </td>
-      <td >
+      <td>
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
     </tr>
      <tr>
-      <td>
+      <td>Arup Datta
          </td>
       <td >
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
     </tr>
      <tr>
-      <td>
+      <td>Jarin Tasnim Ishika
          </td>
       <td >
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
     </tr>
      <tr>
-      <td>
+      <td>Nhi Le
          </td>
       <td >
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
     </tr>
      <tr>
-      <td>
+      <td>Vaishnavi Sabna
          </td>
       <td >
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
     </tr>
      <tr>
-      <td>
+      <td>Rachelle Blosser
          </td>
       <td >
+       <ul>
+        <li>Started Document</li>
+        <li>Edited 2a. and 2b. </li>
+       </ul>
       </td>
-       <td >
+       <td >17%
       </td>
        <td >
       </td>
