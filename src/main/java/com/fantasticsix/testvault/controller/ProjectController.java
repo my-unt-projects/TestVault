@@ -30,7 +30,7 @@ public class ProjectController {
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
-        List<User> managers = userRepository.findByRoleName("ROLE_ADMIN");
+        List<User> managers = userRepository.findByRoleName("ROLE_ADMIN");  // TODO: Change to ROLE_MANAGER
         model.addAttribute("project", new Project());
         model.addAttribute("statusOptions", ProjectStatus.values());
         model.addAttribute("managers", managers);
@@ -47,10 +47,10 @@ public class ProjectController {
     public String showEditForm(@PathVariable Long id, Model model) {
         Project project = projectService.getProjectById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
-        List<User> managers = userRepository.findByRoleName("MANAGER"); // Fetch managers
+        List<User> managers = userRepository.findByRoleName("ROLE_ADMIN"); // TODO: Change to ROLE_MANAGER
         model.addAttribute("project", project);
         model.addAttribute("statusOptions", ProjectStatus.values());
-        model.addAttribute("managers", managers); // Add managers to the model
+        model.addAttribute("managers", managers);
         return "projects/edit";
     }
 
