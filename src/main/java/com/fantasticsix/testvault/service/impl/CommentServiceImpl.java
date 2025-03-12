@@ -41,9 +41,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getCommentsByTestCase(Long testCaseId) {
+    public List<Comment> getCommentsByTestCaseId(Long testCaseId) {
         TestCase testCase = testCaseRepository.findById(testCaseId)
                 .orElseThrow(() -> new RuntimeException("TestCase not found"));
-        return commentRepository.findByTestCase(testCase);
+        return commentRepository.getCommentsByTestCase(testCase);
     }
 }

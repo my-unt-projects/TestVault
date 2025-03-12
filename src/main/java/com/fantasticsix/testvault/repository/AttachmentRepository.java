@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
-    List<Attachment> findAttachmentByTestCase(TestCase testCase);
+    List<Attachment> getAttachmentsByTestCase(TestCase testCase);
 }

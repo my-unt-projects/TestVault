@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    List<Comment> findByTestCase(TestCase testCase);
+    List<Comment> getCommentsByTestCase(TestCase testCase);
 }

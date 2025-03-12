@@ -5,7 +5,7 @@ import com.fantasticsix.testvault.model.Attachment;
 import java.util.List;
 
 public interface AttachmentService {
-    List<Attachment> getAttachmentsByTestCase(Long testCaseId);
+    List<Attachment> getAttachmentsByTestCaseId(Long testCaseId);
     Attachment getAttachment(Long id);
     Attachment addAttachment(Attachment attachment);
     Attachment updateAttachment(Attachment attachment);

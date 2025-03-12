@@ -17,16 +17,16 @@ public class AttachmentServiceImpl implements AttachmentService {
     private final TestCaseRepository testCaseRepository;
 
     @Override
-    public List<Attachment> getAttachmentsByTestCase(Long testCaseId) {
+    public List<Attachment> getAttachmentsByTestCaseId(Long testCaseId) {
         TestCase testCase = testCaseRepository.findById(testCaseId)
-                .orElseThrow(() -> new RuntimeException("Test case not found"));
-        return attachmentRepository.findAttachmentByTestCase(testCase);
+                .orElseThrow(() -> new RuntimeException("Test case not found with id: " + testCaseId));
+        return attachmentRepository.getAttachmentsByTestCase(testCase);
     }
 
     @Override
     public Attachment getAttachment(Long id) {
         return attachmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Attachment not found"));
+                .orElseThrow(() -> new RuntimeException("Attachment not found with id: " + id));
     }
 
     @Override

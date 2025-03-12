@@ -9,5 +9,5 @@ public interface CommentService {
     Comment updateComment(Comment comment);
     Comment getCommentById(Long id);
     void deleteComment(Long id);
-    List<Comment> getCommentsByTestCase(Long testCaseId);
+    List<Comment> getCommentsByTestCaseId(Long testCaseId);
 }
