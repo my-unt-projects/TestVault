@@ -1,22 +1,26 @@
 package com.fantasticsix.testvault.service.impl;
 
 import com.fantasticsix.testvault.model.Attachment;
+import com.fantasticsix.testvault.model.TestCase;
 import com.fantasticsix.testvault.repository.AttachmentRepository;
+import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.AttachmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AttachmentServiceImpl implements AttachmentService {
     private final AttachmentRepository attachmentRepository;
+    private final TestCaseRepository testCaseRepository;
 
     @Override
-    public List<Attachment> getAllAttachment() {
-        return attachmentRepository.findAll();
+    public List<Attachment> getAttachmentsByTestCase(Long testCaseId) {
+        TestCase testCase = testCaseRepository.findById(testCaseId)
+                .orElseThrow(() -> new RuntimeException("Test case not found"));
+        return attachmentRepository.findAttachmentByTestCase(testCase);
     }
 
     @Override
