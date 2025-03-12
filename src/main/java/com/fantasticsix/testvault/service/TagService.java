@@ -10,4 +10,5 @@ public interface TagService {
     void deleteById(Long id);
     Tag update(Tag tag);
     List<Tag> getAll();
+    List<Tag> getByTestCaseId(Long testCaseId);
 }

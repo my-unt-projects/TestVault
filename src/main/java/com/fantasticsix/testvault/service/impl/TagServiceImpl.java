@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService {
     private final TagRepository tagRepository;
-    private final TestCaseRepository testCaseRepository;
 
     @Override
     public Tag save(Tag tag) {
@@ -45,5 +44,10 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> getAll() {
         return tagRepository.findAll();
+    }
+
+    @Override
+    public List<Tag> getByTestCaseId(Long testCaseId) {
+        return tagRepository.findByTestCaseId(testCaseId);
     }
 }
