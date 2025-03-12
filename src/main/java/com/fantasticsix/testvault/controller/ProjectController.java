@@ -1,6 +1,6 @@
 package com.fantasticsix.testvault.controller;
 
-import com.fantasticsix.testvault.constants.ProjectStatus;
+import com.fantasticsix.testvault.enums.ProjectStatus;
 import com.fantasticsix.testvault.model.Project;
 import com.fantasticsix.testvault.model.User;
 import com.fantasticsix.testvault.repository.UserRepository;

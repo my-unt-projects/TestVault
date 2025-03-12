@@ -1,5 +1,6 @@
 package com.fantasticsix.testvault.model;
 
+import com.fantasticsix.testvault.enums.AttachmentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,8 @@ public class Attachment {
     private String filePath;
 
     @Column(nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private AttachmentType type;
 
     @ManyToOne
     @JoinColumn(name = "test_case_id")

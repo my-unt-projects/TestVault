@@ -1,6 +1,6 @@
 package com.fantasticsix.testvault.model;
 
-import com.fantasticsix.testvault.constants.ProjectStatus;
+import com.fantasticsix.testvault.enums.ProjectStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

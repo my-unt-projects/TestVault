@@ -1,4 +1,4 @@
-package com.fantasticsix.testvault.constants;
+package com.fantasticsix.testvault.enums;
 
 public enum ProjectStatus {
     NOT_STARTED,
