@@ -3,6 +3,7 @@ package com.fantasticsix.testvault.model;
 import com.fantasticsix.testvault.enums.AttachmentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
