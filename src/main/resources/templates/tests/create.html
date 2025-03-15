@@ -12,7 +12,7 @@
         <div class="flex space-x-6">
             <div class="w-1/2">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project</label>
-                <select name="project" class="input-class w-full">
+                <select name="project" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors">
                     <option value="Project A">Project A</option>
                     <option value="Project B">Project B</option>
                     <option value="Project C">Project C</option>
@@ -20,7 +20,7 @@
             </div>
             <div class="w-1/2">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Module</label>
-                <select name="module" class="input-class w-full">
+                <select name="module" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors">
                     <option value="Module 1">Module 1</option>
                     <option value="Module 2">Module 2</option>
                     <option value="Module 3">Module 3</option>
@@ -29,27 +29,31 @@
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Test Case Name</label>
-            <input type="text" name="testCaseName" class="input-class">
+            <input type="text" name="testCaseName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors">
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
-            <textarea name="description" rows="6" class="input-class w-full"></textarea>
+            <textarea name="description" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors"></textarea>
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Assignee</label>
-            <input type="text" name="assignee" class="input-class">
+            <select name="assignee" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors">
+                <option value="User1">User 1</option>
+                <option value="User2">User 2</option>
+                <option value="User3">User 3</option>
+            </select>
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Expected Behavior</label>
-            <textarea name="expectedBehavior" rows="4" class="input-class w-full"></textarea>
+            <textarea name="expectedBehavior" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors"></textarea>
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Actual Behavior</label>
-            <textarea name="actualBehavior" rows="4" class="input-class w-full"></textarea>
+            <textarea name="actualBehavior" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors"></textarea>
         </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
-            <select name="status" class="input-class">
+            <select name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500 dark:focus:ring-blue-600 transition-colors">
                 <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
@@ -57,9 +61,7 @@
         </div>
         <!-- Submit Button -->
         <button type="submit"
-                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white
-                    rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
-                    dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
             Submit
         </button>
     </form>
@@ -67,4 +69,3 @@
 
 </body>
 </html>
-
