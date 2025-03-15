@@ -74,4 +74,43 @@ public class ModuleController {
         return "redirect:/modules";
     }
 
+
+    @GetMapping("/edit/{id}")
+    public String editModule(@PathVariable Long id, Model model) {
+        log.info("=====>>>>>>>> editing module <<<<<<<<<<<<<<<<<");
+        Module module = moduleService.get(id);
+        List<Project> projects = projectService.getAllProjects();
+        ModuleDto moduleDto = ModuleDto.builder()
+                .moduleId(module.getModuleId())
+                .description(module.getDescription())
+                .moduleName(module.getModuleName())
+                .projectName(module.getProject().getProjectName())
+                .projectId(module.getProject().getId())
+                .build();
+
+        model.addAttribute("module", moduleDto);
+        model.addAttribute("projects", projects);
+
+        return "modules/edit";
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String updateModule(@PathVariable Long id, @ModelAttribute ModuleDto moduleRequestDto) {
+        log.info(">>>>>>>>>>>>>>>> updating module <<<<<<<<<<<<<<<");
+        log.info("moduleRequestDto: {}", moduleRequestDto);
+        Module existingModule = moduleService.get(id);
+        Project project = projectService.getProjectById(moduleRequestDto.getProjectId())
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        if (existingModule != null) {
+            existingModule.setModuleName(moduleRequestDto.getModuleName());
+            existingModule.setDescription(moduleRequestDto.getDescription());
+            existingModule.setProject(project);
+            moduleService.update(existingModule);
+        }
+
+        return "redirect:/modules";
+    }
+
 }
