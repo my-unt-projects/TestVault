@@ -8,5 +8,6 @@ public interface ModuleService {
     Module get(Long id);
     Module update(Module module);
     void delete(Long id);
-    List<Module> getByProjectId(Long projectId);
+    List<Module> getAllByProjectId(Long projectId);
+    List<Module> getAll();
 }

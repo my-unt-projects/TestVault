@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<main layout:fragment="content">
+
+  <section>
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Edit Module</h1>
+    <form class="space-y-6" method="post" th:action="@{/modules/update/{id}(id=${module.moduleId})}"
+          th:object="${module}">
+
+      <!-- Module Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Module Name</label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                      focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                      dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                      dark:focus:ring-blue-600 transition-colors"
+               th:field="*{moduleName}" type="text" required>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                         focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                         dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                         dark:focus:ring-blue-600 transition-colors"
+                  rows="3" th:field="*{description}"></textarea>
+      </div>
+
+      <!-- Project Dropdown -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project</label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                       focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                       dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                       dark:focus:ring-blue-600 transition-colors"
+                th:field="*{projectId}" required>
+          <option value="">Select a Project</option>
+          <option th:each="project : ${projects}"
+                  th:value="${project.id}"
+                  th:text="${project.projectName}"
+                  th:selected="${project.id == module.projectId}"></option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white
+                    rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+                    dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              type="submit">
+        Update Module
+      </button>
+    </form>
+  </section>
+</main>
+</body>
+</html>

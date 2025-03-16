@@ -43,9 +43,14 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public List<Module> getByProjectId(Long projectId) {
+    public List<Module> getAllByProjectId(Long projectId) {
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new RuntimeException("Project with id " + projectId + " not found"));
         return moduleRepository.getModulesByProject(project);
+    }
+
+    @Override
+    public List<Module> getAll() {
+        return moduleRepository.findAll();
     }
 }
