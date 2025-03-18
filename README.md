@@ -58,3 +58,42 @@ Detailed description:  TestVault is a Test Case Management System designed to cr
 
 **Meeting minutes**
 [https://github.com/my-unt-projects/TestVault/tree/main/docs/meetings](https://github.com/my-unt-projects/TestVault/tree/main/docs/meetings)
+
+# Compile and Run the Program
+
+## Prerequisites
+1. Ensure Java 17 is installed. You can check your Java version by running:
+   ```sh
+   java -version
+   ```
+   If Java is not installed, download it from [Oracle](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or use your package manager.
+
+2. Install Docker Desktop from [here](https://www.docker.com/products/docker-desktop/).
+
+## Steps to Run the Application
+1. Clone the repository from the main branch:
+   ```sh
+   git clone https://github.com/my-unt-projects/TestVault.git
+   ```
+
+2. Navigate to the project directory:
+   ```sh
+   cd TestVault
+   ```
+
+3. Start MySQL using Docker:
+   ```sh
+   docker-compose up -d
+   ```
+
+4. Compile and run the application:
+   ```sh
+   ./mvnw spring-boot:run
+   ```
+
+5. Run the Spring Boot tests:
+   ```sh
+   ./mvnw test
+   ```
+
+6. Access the application at [http://localhost:8080](http://localhost:8080).
