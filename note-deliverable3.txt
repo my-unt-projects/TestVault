@@ -12,6 +12,7 @@ TestVault/
 ├── docker-compose.yml
 ├── docs
 │   ├── meetings
+│   │   ├── meeting 03-12-2025.md
 │   │   ├── meeting 02-21-2025.md
 │   │   ├── meeting 02-25-2025.md
 │   │   ├── meeting-01-28-2025.md
