@@ -48,9 +48,9 @@ public class TestCaseController {
         return "redirect:/tests/all";
     }
 
-    @GetMapping("/delete/{title}")
-    public String deleteTestCase(@PathVariable String title) {
-        testCaseService.deleteTestCaseByTitle(title);
+    @GetMapping("/delete/{id}")
+    public String deleteTestCase(@PathVariable Long id) {
+        testCaseService.deleteTestCaseById(id);
         return "redirect:/tests/all";
     }
 

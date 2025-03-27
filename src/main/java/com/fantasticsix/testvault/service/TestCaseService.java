@@ -14,5 +14,5 @@ public interface TestCaseService {
     TestCase updateTestCase(Long id, TestCase testCaseDetails);
 
     // Delete test case by title
-    void deleteTestCaseByTitle(String title);
+    void deleteTestCaseById(Long id);
 }

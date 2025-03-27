@@ -46,8 +46,8 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public void deleteTestCaseByTitle(String title) {
-        TestCase testCase = testCaseRepository.findByName(title)
+    public void deleteTestCaseById(Long id) {
+        TestCase testCase = testCaseRepository.getByTestCaseId(id)
                 .orElseThrow(() -> new RuntimeException("Test case not found"));
         testCaseRepository.delete(testCase);
     }
