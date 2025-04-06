@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
 <head>
-    <title>Test Cases for [[${module.name}]]</title>
+    <title>All Test Cases</title>
 </head>
 <body>
 <main layout:fragment="content">
-    <h1 class="text-2xl font-bold mb-6">Test Cases for [[${module.name}]]</h1>
+    <section>
+        <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">All Test Cases</h1>
 
-    <table class="min-w-full bg-white dark:bg-gray-800 rounded">
-        <thead>
-        <tr>
-            <th class="px-4 py-2 text-left">Title</th>
-            <th class="px-4 py-2 text-left">Priority</th>
-            <th class="px-4 py-2 text-left">Status</th>
-            <th class="px-4 py-2 text-left">Assignee</th>
-            <th class="px-4 py-2 text-left">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="testCase : ${testCases}">
-            <td class="px-4 py-2" th:text="${testCase.title}"></td>
-            <td class="px-4 py-2" th:text="${testCase.priority}"></td>
-            <td class="px-4 py-2" th:text="${testCase.status}"></td>
-            <td class="px-4 py-2" th:text="${testCase.assignedTo != null ? testCase.assignedTo.name : 'Unassigned'}"></td>
-            <td class="px-4 py-2">
-                <a th:href="@{/testcases/{id}/edit(id=${testCase.testCaseId})}" class="text-blue-500 hover:underline">Edit</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="min-w-full bg-white dark:bg-gray-800 rounded shadow">
+            <thead class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+            <tr>
+                <th class="px-4 py-2 text-left">Title</th>
+                <th class="px-4 py-2 text-left">Priority</th>
+                <th class="px-4 py-2 text-left">Status</th>
+                <th class="px-4 py-2 text-left">Module</th>
+                <th class="px-4 py-2 text-left">Assignee</th>
+                <th class="px-4 py-2 text-left">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="testCase : ${testCases}" class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.title}"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.priority}"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.status}"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.moduleName} ?: 'Unknown'"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
+                <td class="px-4 py-2">
+                    <a th:href="@{/testcases/{id}/edit(id=${testCase.testCaseId})}"
+                       class="text-blue-600 dark:text-blue-400 hover:underline">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 </main>
 </body>
 </html>

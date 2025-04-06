@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class TestCaseDto {
+    private Long testCaseId;
     private String title;
     private String description;
     private String priority;
@@ -23,7 +24,8 @@ public class TestCaseDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
-    private Long assignedToId;
+    private String assignedToEmail;
     private Long moduleId;
+    private String moduleName;
     private List<Long> tagIds;
 }

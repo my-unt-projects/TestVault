@@ -52,4 +52,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         return testCaseRepository.getTestCasesByModule(module);
     }
+
+    @Override
+    public List<TestCase> getAll() {
+        return testCaseRepository.findAll();
+    }
 }
