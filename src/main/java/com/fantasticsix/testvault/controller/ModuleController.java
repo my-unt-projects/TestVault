@@ -113,4 +113,17 @@ public class ModuleController {
         return "redirect:/modules";
     }
 
+    @GetMapping("/by-project/{projectId}")
+    @ResponseBody
+    public List<ModuleDto> getModulesByProject(@PathVariable Long projectId) {
+        return moduleService
+                .getModulesByProjectId(projectId).stream()
+                .map(module -> ModuleDto.builder()
+                        .moduleId(module.getModuleId())
+                        .moduleName(module.getModuleName())
+                        .description(module.getDescription())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
 }

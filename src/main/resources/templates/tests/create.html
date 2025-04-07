@@ -97,20 +97,29 @@
                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                               dark:focus:ring-blue-600 transition-colors">
             </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Associated Project</label>
+                <select id="projectDropdown" th:field="*{projectId}"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors">
+                    <option value="">Select a Project</option>
+                    <option th:each="project : ${projects}"
+                            th:value="${project.id}"
+                            th:text="${project.projectName}"></option>
+                </select>
+            </div>
 
             <!-- Module -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Module</label>
-                <select th:field="*{moduleId}"
+                <select id="moduleDropdown" th:field="*{moduleId}"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
                                focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                dark:focus:ring-blue-600 transition-colors">
                     <option value="" disabled selected>Select module</option>
-                    <option th:each="module : ${modules}"
-                            th:value="${module.moduleId}"
-                            th:text="${module.moduleName}">
-                    </option>
                 </select>
             </div>
 
@@ -159,4 +168,29 @@
 </main>
 
 </body>
+<script th:inline="javascript" layout:fragment="script">
+    document.getElementById('projectDropdown').addEventListener('change', function () {
+        const projectId = this.value;
+        const moduleDropdown = document.getElementById('moduleDropdown');
+
+        // Clear current module options
+        moduleDropdown.innerHTML = '<option value="" disabled selected>Select module</option>';
+
+        if (projectId) {
+            fetch('/modules/by-project/' + projectId)
+                .then(response => response.json())
+                .then(modules => {
+                    modules.forEach(module => {
+                        const option = document.createElement('option');
+                        option.value = module.moduleId;
+                        option.textContent = module.moduleName;
+                        moduleDropdown.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching modules:', error);
+                });
+        }
+    });
+</script>
 </html>

@@ -10,4 +10,5 @@ public interface ModuleService {
     void delete(Long id);
     List<Module> getAllByProjectId(Long projectId);
     List<Module> getAll();
+    List<Module> getModulesByProjectId(Long projectId);
 }
