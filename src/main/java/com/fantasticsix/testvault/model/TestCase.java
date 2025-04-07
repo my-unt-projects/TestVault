@@ -43,19 +43,19 @@ public class TestCase {
     @JoinColumn(name = "assigned_to", referencedColumnName = "id")
     private User assignedTo;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "testcase_tags",
-//            joinColumns = @JoinColumn(name = "test_case_id"),
-//            inverseJoinColumns = @JoinColumn(name = "tag_id")
-//    )
-//    private List<Tag> tags = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "testcase_tags",
+            joinColumns = @JoinColumn(name = "test_case_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Attachment> attachments = new ArrayList<>();
+    @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attachment> attachments = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne
     private Module module;

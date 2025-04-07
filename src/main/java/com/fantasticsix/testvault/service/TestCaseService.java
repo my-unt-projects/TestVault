@@ -10,4 +10,5 @@ public interface TestCaseService {
     void delete(Long id);
     TestCase update(TestCase testCase);
     List<TestCase> getByModuleId(Long moduleId);
+    List<TestCase> getAll();
 }
