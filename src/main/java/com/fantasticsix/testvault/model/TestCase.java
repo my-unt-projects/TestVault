@@ -1,9 +1,7 @@
 package com.fantasticsix.testvault.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -14,6 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 public class TestCase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,4 +59,8 @@ public class TestCase {
 
     @ManyToOne
     private Module module;
+
+    @ManyToOne
+    private Project project;
+
 }

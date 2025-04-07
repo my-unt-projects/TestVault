@@ -1,6 +1,8 @@
 package com.fantasticsix.testvault.dto;
 
+import com.fantasticsix.testvault.model.Project;
 import lombok.*;
+import org.hibernate.event.spi.PreInsertEvent;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -26,6 +28,7 @@ public class TestCaseDto {
 
     private String assignedToEmail;
     private Long moduleId;
+    private Long projectId;
     private String moduleName;
     private List<Long> tagIds;
 }

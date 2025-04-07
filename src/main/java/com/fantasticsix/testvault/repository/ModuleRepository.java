@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
     List<Module> getModulesByProject(Project project);
+    List<Module> findByProjectId(Long projectId);
 }

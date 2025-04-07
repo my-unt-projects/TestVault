@@ -3,6 +3,7 @@ package com.fantasticsix.testvault.controller;
 import com.fantasticsix.testvault.dto.ModuleDto;
 import com.fantasticsix.testvault.dto.TestCaseDto;
 import com.fantasticsix.testvault.dto.UserDto;
+import com.fantasticsix.testvault.model.Project;
 import com.fantasticsix.testvault.model.Tag;
 import com.fantasticsix.testvault.model.TestCase;
 import com.fantasticsix.testvault.model.User;
@@ -26,19 +27,16 @@ public class TestCaseController {
     private final TagService tagService;
     private final UserService userService;
     private final ModuleService moduleService;
+    private final ProjectService projectService;
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         TestCaseDto testCaseDto = new TestCaseDto();
 
         model.addAttribute("testCaseDto", testCaseDto);
-        model.addAttribute("modules", moduleService.getAll().stream().map(module -> ModuleDto.builder().moduleId(module.getModuleId())
-                        .projectId(module.getProject().getId())
-                        .moduleName(module.getModuleName())
-                        .description(module.getDescription())
-                        .projectName(module.getProject().getProjectName())
-                        .build())
-                .collect(Collectors.toList()));
+        model.addAttribute("projects", projectService.getAllProjects());
+//        model.addAttribute("modules", moduleService.getAll());
+
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("tags", tagService.getAll()); // Add later
         return "tests/create";
@@ -63,6 +61,12 @@ public class TestCaseController {
 
         if (testCaseDto.getModuleId() != null) {
             testCase.setModule(moduleService.get(testCaseDto.getModuleId()));
+        }
+
+        if (testCaseDto.getProjectId() != null) {
+            Project project = projectService.getProjectById(testCaseDto.getProjectId())
+                    .orElseThrow(() -> new RuntimeException("Project not found"));
+            testCase.setProject(project);
         }
 
         if (testCaseDto.getTagIds() != null) {
