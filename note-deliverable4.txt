@@ -1,0 +1,150 @@
+1. README File: TestVault/README.md
+2. Meeting minutes: TestVault/docs/minutes
+
+3. Overall folder structure of the project:
+
+TestVault/
+├── GROUP-INFO.md
+├── HELP.md
+├── LICENSE
+├── README.md
+├── TestVault Diagrams-Page-2.drawio (1).png
+├── docker-compose.yml
+├── docs
+│   ├── meetings
+│   │   ├── meeting 02-21-2025.md
+│   │   ├── meeting 02-25-2025.md
+│   │   ├── meeting 03-12-2025.md
+│   │   ├── meeting 03-18-2025.md
+│   │   ├── meeting 03-25-2025.md
+│   │   ├── meeting-01-28-2025.md
+│   │   ├── meeting-02-04-2025.md
+│   │   ├── meeting-02-11-2025.md
+│   │   └── meeting-02-18-2025.md
+│   ├── planning
+│   │   ├── project-plan.md
+│   │   ├── risk-management.md
+│   │   └── system-requirements.md
+│   └── reports
+│       ├── Deliverable_1_Report.pdf
+│       ├── Deliverable_2_Report.md
+│       └── diagrams original files link
+├── gantt chart.ipynb
+├── gantt chart.py
+├── inspection-code-fantastic-six.pdf
+├── mvnw
+├── mvnw.cmd
+├── note-deliverable1.txt
+├── note-deliverable2.txt
+├── note-deliverable3.txt
+├── notes_02_25_25.txt
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── fantasticsix
+    │   │           └── testvault
+    │   │               ├── TestVaultApplication.java
+    │   │               ├── advice
+    │   │               │   └── GlobalControllerAdvice.java
+    │   │               ├── config
+    │   │               │   ├── DataSeeder.java
+    │   │               │   ├── SecurityConfiguration.java
+    │   │               │   ├── ThymeleafConfig.java
+    │   │               │   └── WebConfig.java
+    │   │               ├── constants
+    │   │               │   └── ProjectStatus.java
+    │   │               ├── controller
+    │   │               │   ├── AuthController.java
+    │   │               │   ├── DashboardController.java
+    │   │               │   ├── HomeController.java
+    │   │               │   ├── ModuleController.java
+    │   │               │   ├── ProjectController.java
+    │   │               │   ├── TestCaseController.java
+    │   │               │   └── UserController.java
+    │   │               ├── dto
+    │   │               │   ├── AttachmentDto.java
+    │   │               │   ├── ModuleDto.java
+    │   │               │   ├── TestCaseDto.java
+    │   │               │   ├── UserDetailModel.java
+    │   │               │   └── UserDto.java
+    │   │               ├── model
+    │   │               │   ├── Attachment.java
+    │   │               │   ├── Comment.java
+    │   │               │   ├── Module.java
+    │   │               │   ├── Notification.java
+    │   │               │   ├── Project.java
+    │   │               │   ├── Role.java
+    │   │               │   ├── Tag.java
+    │   │               │   ├── TestCase.java
+    │   │               │   └── User.java
+    │   │               ├── repository
+    │   │               │   ├── AttachmentRepository.java
+    │   │               │   ├── CommentRepository.java
+    │   │               │   ├── ModuleRepository.java
+    │   │               │   ├── ProjectRepository.java
+    │   │               │   ├── RoleRepository.java
+    │   │               │   ├── TagRepository.java
+    │   │               │   ├── TestCaseRepository.java
+    │   │               │   └── UserRepository.java
+    │   │               └── service
+    │   │                   ├── AttachmentService.java
+    │   │                   ├── CommentService.java
+    │   │                   ├── ModuleService.java
+    │   │                   ├── ProjectService.java
+    │   │                   ├── TagService.java
+    │   │                   ├── TestCaseService.java
+    │   │                   ├── UserService.java
+    │   │                   └── impl
+    │   │                       ├── AttachmentServiceImpl.java
+    │   │                       ├── CommentServiceImpl.java
+    │   │                       ├── ModuleServiceImpl.java
+    │   │                       ├── ProjectServiceImpl.java
+    │   │                       ├── TagServiceImpl.java
+    │   │                       ├── TestCaseServiceImpl.java
+    │   │                       └── UserServiceImpl.java
+    │   └── resources
+    │       ├── application.properties
+    │       ├── static
+    │       │   ├── css
+    │       │   │   └── app.css
+    │       │   ├── img
+    │       │   │   ├── testvault-logo.png
+    │       │   │   └── user-icon.png
+    │       │   └── js
+    │       │       └── app.bundle.js
+    │       └── templates
+    │           ├── dashboard.html
+    │           ├── fragments
+    │           │   ├── footer.html
+    │           │   ├── header.html
+    │           │   └── sidebar.html
+    │           ├── layout.html
+    │           ├── login.html
+    │           ├── modules
+    │           │   ├── create.html
+    │           │   ├── edit.html
+    │           │   └── list.html
+    │           ├── projects
+    │           │   ├── create.html
+    │           │   ├── edit.html
+    │           │   └── list.html
+    │           ├── register.html
+    │           ├── tests
+    │           │   ├── create.html
+    │           │   ├── edit.html
+    │           │   └── lists.html
+    │           └── users.html
+    └── test
+        └── java
+            └── com
+                └── fantasticsix
+                    └── testvault
+                        ├── AuthControllerTest.java
+                        ├── ModuleServiceImplTest.java
+                        ├── ProjectServiceImplTest.java
+                        ├── TestCaseControllerTest.java
+                        ├── TestCaseServiceImplTest.java
+                        ├── TestVaultApplicationTests.java
+                        └── UserServiceImplTest.java
