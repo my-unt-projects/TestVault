@@ -31,4 +31,15 @@ public class TestCaseDto {
     private Long projectId;
     private String moduleName;
     private List<Long> tagIds;
+    private List<String> attachments;
+
+    @Override
+    public String toString() {
+        return "TestCaseDto{" +
+                "testCaseId=" + testCaseId +
+                ", title='" + title + '\'' +
+                ", status='" + status + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }

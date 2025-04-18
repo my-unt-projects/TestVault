@@ -1,26 +1,34 @@
 package com.fantasticsix.testvault.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.UUID;
+
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 public class Attachment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attachmentId;
 
-    @Column(nullable = false)
-    private String filePath;
+    private String fileName;
+    private String fileType;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] data;
 
-    @Column(nullable = false)
-    private String type;
+    @Column(unique = true, nullable = false)
+    private String uuid;  // Unique UUID for the attachment
 
     @ManyToOne
-    @JoinColumn(name = "test_case_id")
+    @JoinColumn(name = "test_case_id", nullable = true)
     private TestCase testCase;
+
+    public Attachment() {
+        this.uuid = UUID.randomUUID().toString();
+    }
 }

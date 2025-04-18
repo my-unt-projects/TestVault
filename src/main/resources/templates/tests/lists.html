@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<html layout:decorate="layout" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>All Test Cases</title>
 </head>
@@ -20,15 +20,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="testCase : ${testCases}" class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+            <tr class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900"
+                th:each="testCase : ${testCases}">
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.title}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.priority}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.status}"></td>
-                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.moduleName} ?: 'Unknown'"></td>
-                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
+                    th:text="${testCase.moduleName} ?: 'Unknown'"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
+                    th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
                 <td class="px-4 py-2">
-                    <a th:href="@{/testcases/{id}/edit(id=${testCase.testCaseId})}"
-                       class="text-blue-600 dark:text-blue-400 hover:underline">Edit</a>
+                    <a class="text-blue-600 dark:text-blue-400 hover:underline"
+                       th:href="@{/tests/edit/{id}(id=${testCase.testCaseId})}">Edit</a>
                 </td>
             </tr>
             </tbody>

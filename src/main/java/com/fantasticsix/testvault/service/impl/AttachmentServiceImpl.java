@@ -29,19 +29,6 @@ public class AttachmentServiceImpl implements AttachmentService {
                 .orElseThrow(() -> new RuntimeException("Attachment not found with id: " + id));
     }
 
-    @Override
-    public Attachment addAttachment(Attachment attachment) {
-        return attachmentRepository.save(attachment);
-    }
-
-    @Override
-    public Attachment updateAttachment(Attachment attachment) {
-        Attachment savedAttachment = attachmentRepository.findById(attachment.getAttachmentId())
-                .orElseThrow(() -> new RuntimeException("Attachment not found. Update operation failed"));
-        savedAttachment.setType(attachment.getType());
-        savedAttachment.setFilePath(attachment.getFilePath());
-        return attachmentRepository.save(savedAttachment);
-    }
 
     @Override
     public void deleteAttachment(Long id) {
