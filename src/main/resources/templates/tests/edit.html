@@ -133,7 +133,7 @@
                                dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                dark:focus:ring-blue-600 transition-colors" id="moduleDropdown"
                         th:field="*{moduleId}">
-                    <option disabled selected value="">Select module</option>
+                    <option th:text="*{moduleName}" th:value="*{moduleId}">Selected Module</option>
                 </select>
             </div>
 
@@ -179,7 +179,7 @@
                                rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
                                dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                         type="submit">
-                    Create Test Case
+                    Update Test Case
                 </button>
             </div>
         </form>
@@ -214,27 +214,46 @@
 
 </body>
 <script layout:fragment="script" th:inline="javascript">
-    document.getElementById('projectDropdown').addEventListener('change', function () {
-        const projectId = this.value;
+    document.addEventListener('DOMContentLoaded', function () {
+        const projectDropdown = document.getElementById('projectDropdown');
         const moduleDropdown = document.getElementById('moduleDropdown');
 
-        // Clear current module options
-        moduleDropdown.innerHTML = '<option value="" disabled selected>Select module</option>';
+        const preselectedProjectId = projectDropdown.value;
+        const preselectedModuleId = moduleDropdown.value;
 
-        if (projectId) {
-            fetch('/modules/by-project/' + projectId)
-                .then(response => response.json())
-                .then(modules => {
-                    modules.forEach(module => {
-                        const option = document.createElement('option');
-                        option.value = module.moduleId;
-                        option.textContent = module.moduleName;
-                        moduleDropdown.appendChild(option);
+        console.log(preselectedModuleId)
+
+        function fetchAndPopulateModules(projectId, selectedModuleId) {
+            moduleDropdown.innerHTML = '<option value="" disabled>Select module</option>';
+
+            if (projectId) {
+                fetch('/modules/by-project/' + projectId)
+                    .then(response => response.json())
+                    .then(modules => {
+                        modules.forEach(module => {
+                            const option = document.createElement('option');
+                            option.value = module.moduleId;
+                            option.textContent = module.moduleName;
+                            moduleDropdown.appendChild(option);
+                        });
+
+                        // Now set the selected one *after* all are appended
+                        if (selectedModuleId) {
+                            moduleDropdown.value = selectedModuleId;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching modules:', error);
                     });
-                })
-                .catch(error => {
-                    console.error('Error fetching modules:', error);
-                });
+            }
+        }
+
+        projectDropdown.addEventListener('change', function () {
+            fetchAndPopulateModules(this.value, null);
+        });
+
+        if (preselectedProjectId) {
+            fetchAndPopulateModules(preselectedProjectId, preselectedModuleId);
         }
     });
 
