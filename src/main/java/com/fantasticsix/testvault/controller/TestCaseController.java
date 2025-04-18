@@ -1,8 +1,6 @@
 package com.fantasticsix.testvault.controller;
 
-import com.fantasticsix.testvault.dto.ModuleDto;
 import com.fantasticsix.testvault.dto.TestCaseDto;
-import com.fantasticsix.testvault.dto.UserDto;
 import com.fantasticsix.testvault.model.Project;
 import com.fantasticsix.testvault.model.Tag;
 import com.fantasticsix.testvault.model.TestCase;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/tests")
@@ -35,7 +32,6 @@ public class TestCaseController {
 
         model.addAttribute("testCaseDto", testCaseDto);
         model.addAttribute("projects", projectService.getAllProjects());
-//        model.addAttribute("modules", moduleService.getAll());
 
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("tags", tagService.getAll()); // Add later
@@ -43,9 +39,9 @@ public class TestCaseController {
     }
 
 
-
     @PostMapping("/create")
-    public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto) {
+    public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
+                                 @RequestParam List<String> attachmentUuids) {
         TestCase testCase = new TestCase();
         testCase.setTitle(testCaseDto.getTitle());
         testCase.setDescription(testCaseDto.getDescription());
@@ -76,7 +72,9 @@ public class TestCaseController {
             testCase.setTags(selectedTags);
         }
 
-        testCaseService.save(testCase);
+        testCaseService.save(testCase, attachmentUuids);
+
+
         return "redirect:/tests/all";
     }
 
@@ -108,7 +106,6 @@ public class TestCaseController {
     }
 
 
-
 //    @GetMapping("/module/{moduleId}")
 //    public String listByModule(@PathVariable Long moduleId, Model model) {
 //        List<TestCase> testCases = testCaseService.getByModuleId(moduleId);
@@ -118,12 +115,16 @@ public class TestCaseController {
 //        return "tests/list";
 //    }
 
-    @GetMapping("/{id}/edit")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        TestCase testCase = testCaseService.get(id);
-        List<UserDto> users = userService.findAllUsers();
-        model.addAttribute("testCase", testCase);
-        model.addAttribute("users", users);
+
+    @GetMapping("/edit/{id}")
+    public String editTestCase(@PathVariable Long id, Model model) {
+        TestCaseDto testCaseDto = testCaseService.getTestCaseById(id);
+        model.addAttribute("testCaseDto", testCaseDto);
+        model.addAttribute("projects", projectService.getAllProjects());
+
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("tags", tagService.getAll());
+
         return "tests/edit";
     }
 
