@@ -9,6 +9,16 @@
 <main layout:fragment="content">
 
   <section>
+    # Add the PDF export button to lists.html
+    <div class="mb-4">
+      <a href="/reports/generate"
+         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M7 2a1 1 0 011 1v1h3V3a1 1 0 112 0v1h1a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1z"/>
+        </svg>
+        Export as PDF
+      </a>
+    </div>
     <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Modules List</h1>
     <a href="/modules/new"
        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">

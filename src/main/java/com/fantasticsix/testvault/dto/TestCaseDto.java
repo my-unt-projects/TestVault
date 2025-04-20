@@ -1,34 +1,27 @@
 package com.fantasticsix.testvault.dto;
 
-import com.fantasticsix.testvault.model.Project;
-import lombok.*;
-import org.hibernate.event.spi.PreInsertEvent;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class TestCaseDto {
     private Long testCaseId;
     private String title;
     private String description;
     private String priority;
     private String status;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationDate;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
-
     private String assignedToEmail;
     private Long moduleId;
-    private Long projectId;
     private String moduleName;
+    private Long projectId;
     private List<Long> tagIds;
 }
