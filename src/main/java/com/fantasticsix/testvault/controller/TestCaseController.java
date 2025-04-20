@@ -45,8 +45,8 @@ public class TestCaseController {
         TestCase testCase = new TestCase();
         testCase.setTitle(testCaseDto.getTitle());
         testCase.setDescription(testCaseDto.getDescription());
-        testCase.setPriority(testCaseDto.getPriority());
-        testCase.setStatus(testCaseDto.getStatus());
+        testCase.setPriority(TestCase.Priority.valueOf(testCaseDto.getPriority()));
+        testCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
         testCase.setCreationDate(testCaseDto.getCreationDate());
         testCase.setDueDate(testCaseDto.getDueDate());
 
@@ -88,8 +88,8 @@ public class TestCaseController {
                         .title(testCase.getTitle())
                         .testCaseId(testCase.getTestCaseId())
                         .description(testCase.getDescription())
-                        .priority(testCase.getPriority())
-                        .status(testCase.getStatus())
+                        .priority(String.valueOf(testCase.getPriority()))
+                        .status(String.valueOf(testCase.getStatus()))
                         .creationDate(testCase.getCreationDate())
                         .dueDate(testCase.getDueDate())
                         .assignedToEmail(testCase.getAssignedTo() != null ? testCase.getAssignedTo().getEmail() : null)

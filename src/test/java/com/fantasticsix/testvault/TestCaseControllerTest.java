@@ -106,8 +106,8 @@ class TestCaseControllerTest {
         TestCase testCase = new TestCase();
         testCase.setTestCaseId(1L);
         testCase.setTitle("Test Title");
-        testCase.setStatus("Open");
-        testCase.setPriority("High");
+        testCase.setStatus(TestCase.Status.valueOf("Open"));
+        testCase.setPriority(TestCase.Priority.valueOf("High"));
         testCase.setDescription("Desc");
         testCase.setTags(List.of());
 

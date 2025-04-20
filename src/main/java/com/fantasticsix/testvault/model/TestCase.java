@@ -23,12 +23,13 @@ public class TestCase {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String priority;
+    private Priority priority;
 
-    //TODO replace with ENUM
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status;
+    private Status status;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -63,4 +64,11 @@ public class TestCase {
     @ManyToOne
     private Project project;
 
+    public enum Priority {
+        LOW, MEDIUM, HIGH
+    }
+
+    public enum Status {
+        NEW, IN_PROGRESS, COMPLETED, ON_HOLD, TODO, DONE
+    }
 }

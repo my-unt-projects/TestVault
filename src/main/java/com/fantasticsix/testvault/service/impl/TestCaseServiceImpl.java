@@ -89,8 +89,8 @@ public class TestCaseServiceImpl implements TestCaseService {
                 .testCaseId(testCase.getTestCaseId())
                 .title(testCase.getTitle())
                 .description(testCase.getDescription())
-                .priority(testCase.getPriority())
-                .status(testCase.getStatus())
+                .priority(String.valueOf(testCase.getPriority()))
+                .status(String.valueOf(testCase.getStatus()))
                 .creationDate(testCase.getCreationDate())
                 .dueDate(testCase.getDueDate())
                 .assignedToEmail(testCase.getAssignedTo() != null ? testCase.getAssignedTo().getEmail() : null)
@@ -106,8 +106,8 @@ public class TestCaseServiceImpl implements TestCaseService {
         testCase.setTestCaseId(dto.getTestCaseId());
         testCase.setTitle(dto.getTitle());
         testCase.setDescription(dto.getDescription());
-        testCase.setPriority(dto.getPriority());
-        testCase.setStatus(dto.getStatus());
+        testCase.setPriority(TestCase.Priority.valueOf(dto.getPriority()));
+        testCase.setStatus(TestCase.Status.valueOf(dto.getStatus()));
         testCase.setCreationDate(dto.getCreationDate() != null ? dto.getCreationDate() : new Date());
         testCase.setDueDate(dto.getDueDate());
 
