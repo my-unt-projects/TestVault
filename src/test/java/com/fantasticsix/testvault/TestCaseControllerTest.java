@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.ui.Model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,9 +95,9 @@ class TestCaseControllerTest {
         tag.setTagId(10L);
         when(tagService.getAll()).thenReturn(List.of(tag));
 
-        String view = testCaseController.createTestCase(dto);
+        String view = testCaseController.createTestCase(dto, Arrays.asList("1", "2"));
 
-        verify(testCaseService).save(any(TestCase.class));
+        verify(testCaseService).save(any(TestCase.class), any());
         assertEquals("redirect:/tests/all", view);
     }
 
@@ -105,8 +106,8 @@ class TestCaseControllerTest {
         TestCase testCase = new TestCase();
         testCase.setTestCaseId(1L);
         testCase.setTitle("Test Title");
-        testCase.setStatus("Open");
-        testCase.setPriority("High");
+        testCase.setStatus(TestCase.Status.valueOf("Open"));
+        testCase.setPriority(TestCase.Priority.valueOf("High"));
         testCase.setDescription("Desc");
         testCase.setTags(List.of());
 
@@ -118,21 +119,6 @@ class TestCaseControllerTest {
         assertEquals("tests/lists", view);
     }
 
-    @Test
-    void shouldReturnEditForm() {
-        Long id = 1L;
-        TestCase testCase = new TestCase();
-        List<UserDto> users = List.of(new UserDto());
-
-        when(testCaseService.get(id)).thenReturn(testCase);
-        when(userService.findAllUsers()).thenReturn(users);
-
-        String view = testCaseController.showEditForm(id, model);
-
-        verify(model).addAttribute("testCase", testCase);
-        verify(model).addAttribute("users", users);
-        assertEquals("tests/edit", view);
-    }
 
     @Test
     void shouldUpdateTestCaseAndRedirect() {

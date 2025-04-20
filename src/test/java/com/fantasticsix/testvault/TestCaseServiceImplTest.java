@@ -58,7 +58,7 @@ class TestCaseServiceImplTest {
         TestCase testCase = new TestCase();
         when(testCaseRepository.save(testCase)).thenReturn(testCase);
 
-        TestCase saved = testCaseService.save(testCase);
+        TestCase saved = testCaseService.save(testCase, Arrays.asList("1", "2", "3"));
 
         assertNotNull(saved);
         verify(testCaseRepository).save(testCase);

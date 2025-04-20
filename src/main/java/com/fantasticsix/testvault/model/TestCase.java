@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -59,6 +58,7 @@ public class TestCase {
     private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "module_id", nullable = true)
     private Module module;
 
     @ManyToOne
@@ -69,6 +69,6 @@ public class TestCase {
     }
 
     public enum Status {
-        NEW, IN_PROGRESS, COMPLETED, ON_HOLD
+        NEW, IN_PROGRESS, COMPLETED, ON_HOLD, TODO, DONE
     }
 }

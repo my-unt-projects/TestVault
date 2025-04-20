@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<html layout:decorate="layout" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>All Test Cases</title>
 </head>
 <body>
 <main layout:fragment="content">
     <section>
-        <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">All Test Cases</h1>
 
-        <!-- PDF Export Button -->
-        <div class="mb-4">
-            <a href="/reports/generate"
-               class="inline-flex items-center px-4 py-2 bg-white border-2 border-blue-800 text-blue-800 font-medium rounded-lg shadow-sm hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 transition-colors duration-200">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Export as PDF
-            </a>
+        <div class="sm:flex">
+            <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">All Test Cases</h1>
+            </div>
+            <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
+                <a href="/reports/generate" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+                    <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
+                    Export as PDF
+                </a>
+            </div>
+
         </div>
 
         <table class="min-w-full bg-white dark:bg-gray-800 rounded shadow">
@@ -31,15 +32,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="testCase : ${testCases}" class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+            <tr class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900"
+                th:each="testCase : ${testCases}">
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.title}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.priority}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.status}"></td>
-                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.moduleName} ?: 'Unknown'"></td>
-                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
+                    th:text="${testCase.moduleName} ?: 'Unknown'"></td>
+                <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
+                    th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
                 <td class="px-4 py-2">
-                    <a th:href="@{/tests/{id}/edit(id=${testCase.testCaseId})}"
-                       class="text-blue-600 dark:text-blue-400 hover:underline">Edit</a>
+                    <a class="text-blue-600 dark:text-blue-400 hover:underline"
+                       th:href="@{/tests/edit/{id}(id=${testCase.testCaseId})}">Edit</a>
                 </td>
             </tr>
             </tbody>
@@ -47,20 +51,4 @@
     </section>
 </main>
 </body>
-</html><div class="mb-4">
-    <a href="/reports/generate"
-       class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-        Export as PDF
-    </a>
-</div><div class="mb-4">
-    <a href="/reports/generate"
-       class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-        Export as PDF
-    </a>
-</div>
+</html>

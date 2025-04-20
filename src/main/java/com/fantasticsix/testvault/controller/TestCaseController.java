@@ -1,8 +1,6 @@
 package com.fantasticsix.testvault.controller;
 
-import com.fantasticsix.testvault.dto.ModuleDto;
 import com.fantasticsix.testvault.dto.TestCaseDto;
-import com.fantasticsix.testvault.dto.UserDto;
 import com.fantasticsix.testvault.model.Project;
 import com.fantasticsix.testvault.model.Tag;
 import com.fantasticsix.testvault.model.TestCase;
@@ -31,17 +29,19 @@ public class TestCaseController {
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         TestCaseDto testCaseDto = new TestCaseDto();
+
         model.addAttribute("testCaseDto", testCaseDto);
         model.addAttribute("projects", projectService.getAllProjects());
+
         model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("tags", tagService.getAll());
-        model.addAttribute("priorities", TestCase.Priority.values());
-        model.addAttribute("statuses", TestCase.Status.values());
+        model.addAttribute("tags", tagService.getAll()); // Add later
         return "tests/create";
     }
 
+
     @PostMapping("/create")
-    public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto) {
+    public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
+                                 @RequestParam List<String> attachmentUuids) {
         TestCase testCase = new TestCase();
         testCase.setTitle(testCaseDto.getTitle());
         testCase.setDescription(testCaseDto.getDescription());
@@ -72,26 +72,32 @@ public class TestCaseController {
             testCase.setTags(selectedTags);
         }
 
-        testCaseService.save(testCase);
+        testCaseService.save(testCase, attachmentUuids);
+
+
         return "redirect:/tests/all";
     }
+
 
     @GetMapping("/all")
     public String getAllTestCases(Model model) {
         List<TestCase> testCases = testCaseService.getAll();
+
         List<TestCaseDto> testCaseDtos = testCases.stream().map(testCase ->
                 TestCaseDto.builder()
-                        .testCaseId(testCase.getTestCaseId())
                         .title(testCase.getTitle())
+                        .testCaseId(testCase.getTestCaseId())
                         .description(testCase.getDescription())
-                        .priority(testCase.getPriority().name())
-                        .status(testCase.getStatus().name())
+                        .priority(String.valueOf(testCase.getPriority()))
+                        .status(String.valueOf(testCase.getStatus()))
                         .creationDate(testCase.getCreationDate())
                         .dueDate(testCase.getDueDate())
                         .assignedToEmail(testCase.getAssignedTo() != null ? testCase.getAssignedTo().getEmail() : null)
                         .moduleId(testCase.getModule() != null ? testCase.getModule().getModuleId() : null)
                         .moduleName(testCase.getModule() != null ? testCase.getModule().getModuleName() : null)
-                        .tagIds(testCase.getTags() != null ? testCase.getTags().stream().map(Tag::getTagId).toList() : null)
+                        .tagIds(testCase.getTags() != null
+                                ? testCase.getTags().stream().map(Tag::getTagId).toList()
+                                : null)
                         .build()
         ).toList();
 
@@ -99,14 +105,26 @@ public class TestCaseController {
         return "tests/lists";
     }
 
-    @GetMapping("/{id}/edit")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        TestCase testCase = testCaseService.get(id);
-        List<UserDto> users = userService.findAllUsers();
-        model.addAttribute("testCase", testCase);
-        model.addAttribute("users", users);
-        model.addAttribute("priorities", TestCase.Priority.values());
-        model.addAttribute("statuses", TestCase.Status.values());
+
+//    @GetMapping("/module/{moduleId}")
+//    public String listByModule(@PathVariable Long moduleId, Model model) {
+//        List<TestCase> testCases = testCaseService.getByModuleId(moduleId);
+//        Module module = moduleService.get(moduleId);
+//        model.addAttribute("testCases", testCases);
+//        model.addAttribute("module", module);
+//        return "tests/list";
+//    }
+
+
+    @GetMapping("/edit/{id}")
+    public String editTestCase(@PathVariable Long id, Model model) {
+        TestCaseDto testCaseDto = testCaseService.getTestCaseById(id);
+        model.addAttribute("testCaseDto", testCaseDto);
+        model.addAttribute("projects", projectService.getAllProjects());
+
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("tags", tagService.getAll());
+
         return "tests/edit";
     }
 

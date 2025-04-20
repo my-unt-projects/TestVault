@@ -1,53 +1,422 @@
-<!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<!doctype html>
+<html lang="en" layout:decorate="layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Edit Test Case</title>
+    <title>Create New Test Case</title>
+
+    <link href="/webjars/dropzone/5.9.3/dist/min/dropzone.min.css" rel="stylesheet"/>
+    <script src="/webjars/dropzone/5.9.3/dist/min/dropzone.min.js"></script>
+
+
+    <style>
+        .dropzone {
+            border: 2px dashed #4f46e5;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+    </style>
 </head>
 <body>
+
 <main layout:fragment="content">
-  <h1 class="text-2xl font-bold mb-6">Edit Test Case</h1>
+    <section>
+        <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Create New Test Case</h1>
 
-  <form th:action="@{'/testcases/' + ${testCase.testCaseId} + '/edit'}" th:object="${testCase}" method="post" class="space-y-6">
-    <input type="hidden" th:field="*{testCaseId}"/>
-    <input type="hidden" th:field="*{module.moduleId}"/>
+        <form class="space-y-6" method="post" th:action="@{/tests/create}" th:object="${testCaseDto}">
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Title</label>
-      <input type="text" th:field="*{title}" class="mt-1 block w-full rounded-md border-gray-300">
+            <!-- CSRF Token -->
+            <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
+            <input name="_csrf_header" th:value="${_csrf.getHeaderName}" type="hidden">
+
+            <!-- Title -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                              focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                              dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                              dark:focus:ring-blue-600 transition-colors" required
+                       th:field="*{title}" type="text"/>
+                <div class="text-red-500 text-sm" th:if="${#fields.hasErrors('title')}">
+                    <span th:errors="*{title}"></span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                                 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                                 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                                 dark:focus:ring-blue-600 transition-colors" rows="4"
+                          th:field="*{description}"></textarea>
+                <div class="text-red-500 text-sm" th:if="${#fields.hasErrors('description')}">
+                    <span th:errors="*{description}"></span>
+                </div>
+            </div>
+
+            <!-- Priority -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Priority</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors"
+                        th:field="*{priority}">
+                    <option disabled selected value="">Select priority</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+                <div class="text-red-500 text-sm" th:if="${#fields.hasErrors('priority')}">
+                    <span th:errors="*{priority}"></span>
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors"
+                        th:field="*{status}">
+                    <option disabled selected value="">Select status</option>
+                    <option value="TODO">To Do</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="DONE">Done</option>
+                </select>
+                <div class="text-red-500 text-sm" th:if="${#fields.hasErrors('status')}">
+                    <span th:errors="*{status}"></span>
+                </div>
+            </div>
+
+            <!-- Creation Date -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Creation Date</label>
+                <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                              focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                              dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                              dark:focus:ring-blue-600 transition-colors" th:field="*{creationDate}"
+                       type="date">
+            </div>
+
+            <!-- Due Date -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Due Date</label>
+                <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                              focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                              dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                              dark:focus:ring-blue-600 transition-colors" th:field="*{dueDate}"
+                       type="date">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Associated Project</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors" id="projectDropdown"
+                        th:field="*{projectId}">
+                    <option value="">Select a Project</option>
+                    <option th:each="project : ${projects}"
+                            th:text="${project.projectName}"
+                            th:value="${project.id}"></option>
+                </select>
+            </div>
+
+            <!-- Module -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Module</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors" id="moduleDropdown"
+                        th:field="*{moduleId}">
+                    <option th:text="*{moduleName}" th:value="*{moduleId}">Selected Module</option>
+                </select>
+            </div>
+
+            <!-- Assignee -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Assignee (Email)</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors"
+                        th:field="*{assignedToEmail}">
+                    <option disabled selected value="">Select user</option>
+                    <option th:each="user : ${users}"
+                            th:text="${user.name + ' (' + user.email + ')'}"
+                            th:value="${user.email}">
+                    </option>
+                </select>
+            </div>
+            <input id="testCaseId" th:value="${testCaseDto.testCaseId}" type="hidden"/>
+            <!-- Hidden input to store attachment UUIDs -->
+            <input id="attachmentUuids" name="attachmentUuids" type="hidden"/>
+
+            <div class="dropzone" id="myDropzone"></div>
+
+            <!-- Tags -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tags</label>
+                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
+                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
+                               dark:focus:ring-blue-600 transition-colors" multiple size="4"
+                        th:field="*{tagIds}">
+                    <option th:each="tag : ${tags}"
+                            th:text="${tag.name}"
+                            th:value="${tag.tagId}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white
+                               rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+                               dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                        type="submit">
+                    Update Test Case
+                </button>
+            </div>
+        </form>
+    </section>
+    <!-- Flowbite Modal -->
+    <div class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+         id="media-modal"
+         tabindex="-1">
+        <div class="relative w-full h-full max-w-2xl md:h-auto">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-700">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Preview
+                    </h3>
+                    <button class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
+                            id="modal-close-btn"
+                            type="button">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path clip-rule="evenodd"
+                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                  fill-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6 space-y-6 flex justify-center items-center" id="media-modal-content">
+                    <!-- Dynamic media will be injected here -->
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Description</label>
-      <textarea th:field="*{description}" class="mt-1 block w-full rounded-md border-gray-300"></textarea>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Priority</label>
-      <select th:field="*{priority}" class="mt-1 block w-full rounded-md border-gray-300">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Status</label>
-      <select th:field="*{status}" class="mt-1 block w-full rounded-md border-gray-300">
-        <option value="Pending">Pending</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Completed">Completed</option>
-      </select>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Assignee</label>
-      <select th:field="*{assignedTo.id}" class="mt-1 block w-full rounded-md border-gray-300">
-        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
-      </select>
-    </div>
-
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update</button>
-  </form>
 </main>
+
 </body>
+<script layout:fragment="script" th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const projectDropdown = document.getElementById('projectDropdown');
+        const moduleDropdown = document.getElementById('moduleDropdown');
+
+        const preselectedProjectId = projectDropdown.value;
+        const preselectedModuleId = moduleDropdown.value;
+
+        console.log(preselectedModuleId)
+
+        function fetchAndPopulateModules(projectId, selectedModuleId) {
+            moduleDropdown.innerHTML = '<option value="" disabled>Select module</option>';
+
+            if (projectId) {
+                fetch('/modules/by-project/' + projectId)
+                    .then(response => response.json())
+                    .then(modules => {
+                        modules.forEach(module => {
+                            const option = document.createElement('option');
+                            option.value = module.moduleId;
+                            option.textContent = module.moduleName;
+                            moduleDropdown.appendChild(option);
+                        });
+
+                        // Now set the selected one *after* all are appended
+                        if (selectedModuleId) {
+                            moduleDropdown.value = selectedModuleId;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching modules:', error);
+                    });
+            }
+        }
+
+        projectDropdown.addEventListener('change', function () {
+            fetchAndPopulateModules(this.value, null);
+        });
+
+        if (preselectedProjectId) {
+            fetchAndPopulateModules(preselectedProjectId, preselectedModuleId);
+        }
+    });
+
+
+    function loadExistingAttachments() {
+        const testCaseId = document.getElementById("testCaseId").value;
+
+        fetch(`/api/attachments/testcases/${testCaseId}`)
+            .then(response => response.json())
+            .then(attachments => {
+                attachments.forEach(file => {
+                    let mockFile = {name: file.name, type: file.fileType, uuid: file.uuid};
+
+                    // Show preview
+                    myDropzone.emit("addedfile", mockFile);
+                    myDropzone.emit("thumbnail", mockFile, file.filePath);
+                    myDropzone.emit("complete", mockFile);
+
+                    // Disable remove (optional)
+                    mockFile.previewElement.classList.add("dz-complete");
+                    mockFile.previewElement.querySelector(".dz-remove")?.remove();
+
+                    // Add UUID to hidden field
+                    let hiddenField = document.getElementById("attachmentUuids");
+                    let currentUuids = hiddenField.value ? hiddenField.value.split(",") : [];
+                    if (!currentUuids.includes(file.uuid)) {
+                        currentUuids.push(file.uuid);
+                        hiddenField.value = currentUuids.join(",");
+                    }
+
+                    console.log(file)
+
+                    mockFile.previewElement.addEventListener("click", function () {
+                        handleFileClick(mockFile);
+                    });
+                });
+            })
+            .catch(error => console.error("Error loading attachments:", error));
+    }
+
+    function handleFileClick(file) {
+        const fileUrl = "/api/attachments/" + file.uuid + "/view";
+        const isImage = file.type.startsWith("image/");
+        const isVideo = file.type.startsWith("video/");
+
+        const modalContent = document.getElementById("media-modal-content");
+        modalContent.innerHTML = ""; // Clear previous content
+
+        let mediaElement;
+
+        if (isImage) {
+            mediaElement = document.createElement("img");
+            mediaElement.src = fileUrl;
+            mediaElement.className = "max-w-full max-h-[70vh] rounded";
+        } else if (isVideo) {
+            mediaElement = document.createElement("video");
+            mediaElement.src = fileUrl;
+            mediaElement.controls = true;
+            mediaElement.className = "max-w-full max-h-[70vh] rounded";
+        } else {
+            return; // do nothing for other file types
+        }
+
+        modalContent.appendChild(mediaElement);
+
+        // Use Flowbite modal API
+        const modalEl = document.getElementById("media-modal");
+        const modal = new Modal(modalEl, {
+            backdrop: 'dynamic', // allow outside click
+            closable: true,       // allow ESC key and close button
+        });
+        modal.show();
+
+        const closeBtn = document.getElementById("modal-close-btn");
+
+        // Remove old listeners before adding new ones
+        const newCloseBtn = closeBtn.cloneNode(true);
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+
+        newCloseBtn.addEventListener("click", () => {
+            if (modalEl.contains(document.activeElement)) {
+                document.activeElement.blur();
+            }
+            setTimeout(() => {
+                modal.hide();
+
+                if (mediaElement.tagName === "VIDEO") {
+                    mediaElement.pause();
+                    mediaElement.currentTime = 0;
+                }
+            }, 10);
+        });
+
+        // Pause video when clicking outside modal
+        modalEl.addEventListener("click", (e) => {
+            if (e.target === modalEl && isVideo) {
+                if (modalEl.contains(document.activeElement)) {
+                    document.activeElement.blur();
+                }
+
+                setTimeout(() => {
+                    modal.hide();
+                    mediaElement.pause();
+                    mediaElement.currentTime = 0;
+                }, 10);
+            }
+        });
+    }
+
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#myDropzone", {
+        url: "/api/attachments/upload",
+        maxFiles: 5,
+        acceptedFiles: 'image/*,video/*',
+        headers: {
+            [document.querySelector('input[name="_csrf_header"]').getAttribute("value")]:
+                document.querySelector('input[name="_csrf"]').getAttribute("value")
+        },
+        success: function (file, response) {
+            // Attach the UUID from the response to the hidden field
+            var uuid = response.uuid;
+            console.log(uuid);
+            let hiddenField = document.getElementById("attachmentUuids");
+
+            // If hidden field is empty, create an array
+            let attachmentUuids = hiddenField.value ? hiddenField.value.split(",") : [];
+
+            // Add the new UUID
+            attachmentUuids.push(uuid);
+
+            // Update the hidden input field
+            hiddenField.value = attachmentUuids.join(",");
+
+            file.uuid = uuid; // store uuid in file for click handler
+
+            file.previewElement.addEventListener("click", function () {
+                handleFileClick(file);
+            });
+        }
+    });
+
+    // Submit the Test Case Form with attachment UUIDs
+    var testCaseForm = document.getElementById("testCaseForm");
+    if (testCaseForm) {
+        testCaseForm
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                var formData = new FormData(this);
+                fetch("/api/testcase/save", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Test case saved successfully:", data);
+                    })
+                    .catch(error => {
+                        console.error("Error saving test case:", error);
+                    });
+            });
+    }
+
+    window.addEventListener("DOMContentLoaded", loadExistingAttachments);
+</script>
 </html>
