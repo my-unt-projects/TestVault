@@ -5,6 +5,7 @@ import com.fantasticsix.testvault.model.Project;
 import com.fantasticsix.testvault.model.Tag;
 import com.fantasticsix.testvault.model.TestCase;
 import com.fantasticsix.testvault.model.User;
+import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.*;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class TestCaseController {
     private final UserService userService;
     private final ModuleService moduleService;
     private final ProjectService projectService;
+    private final TestCaseRepository testCaseRepository;
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
@@ -78,6 +80,44 @@ public class TestCaseController {
         return "redirect:/tests/all";
     }
 
+    @PostMapping("/update")
+    public String updateTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
+                                 @RequestParam List<String> attachmentUuids) {
+        TestCase existingTestCase = testCaseRepository.findById(testCaseDto.getTestCaseId()).orElseThrow(() -> new IllegalArgumentException("Invalid test case"));
+
+        existingTestCase.setTitle(testCaseDto.getTitle());
+        existingTestCase.setDescription(testCaseDto.getDescription());
+        existingTestCase.setPriority(TestCase.Priority.valueOf(testCaseDto.getPriority()));
+        existingTestCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
+        existingTestCase.setCreationDate(testCaseDto.getCreationDate());
+        existingTestCase.setDueDate(testCaseDto.getDueDate());
+
+        if (testCaseDto.getAssignedToEmail() != null) {
+            Optional<User> assignedUser = userService.findByEmail(testCaseDto.getAssignedToEmail());
+            existingTestCase.setAssignedTo(assignedUser.orElse(null));
+        }
+
+        if (testCaseDto.getModuleId() != null) {
+            existingTestCase.setModule(moduleService.get(testCaseDto.getModuleId()));
+        }
+
+        if (testCaseDto.getProjectId() != null) {
+            Project project = projectService.getProjectById(testCaseDto.getProjectId())
+                    .orElseThrow(() -> new RuntimeException("Project not found"));
+            existingTestCase.setProject(project);
+        }
+
+        if (testCaseDto.getTagIds() != null) {
+            List<Tag> selectedTags = tagService.getAll();
+            existingTestCase.setTags(selectedTags);
+        }
+
+        testCaseService.save(existingTestCase, attachmentUuids);
+
+
+        return "redirect:/tests/" + testCaseDto.getTestCaseId();
+    }
+
 
     @GetMapping("/all")
     public String getAllTestCases(Model model) {
@@ -106,15 +146,6 @@ public class TestCaseController {
     }
 
 
-//    @GetMapping("/module/{moduleId}")
-//    public String listByModule(@PathVariable Long moduleId, Model model) {
-//        List<TestCase> testCases = testCaseService.getByModuleId(moduleId);
-//        Module module = moduleService.get(moduleId);
-//        model.addAttribute("testCases", testCases);
-//        model.addAttribute("module", module);
-//        return "tests/list";
-//    }
-
 
     @GetMapping("/edit/{id}")
     public String editTestCase(@PathVariable Long id, Model model) {
@@ -128,9 +159,15 @@ public class TestCaseController {
         return "tests/edit";
     }
 
-    @PostMapping("/{id}/edit")
-    public String updateTestCase(@ModelAttribute TestCase testCase) {
-        testCaseService.update(testCase);
-        return "redirect:/tests/lists/" + testCase.getModule().getModuleId();
+
+    @GetMapping("/{id}")
+    public String showTestCase(@PathVariable Long id, Model model) {
+        TestCaseDto testCaseDto = testCaseService.getTestCaseById(id);
+        model.addAttribute("testCaseDto", testCaseDto);
+        model.addAttribute("projects", projectService.getAllProjects());
+
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("tags", tagService.getAll());
+        return "tests/show";
     }
 }
