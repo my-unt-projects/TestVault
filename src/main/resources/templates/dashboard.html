@@ -9,11 +9,112 @@
 
 <main layout:fragment="content">
 
-    <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-        <h1>Welcome to Dashboard! <span th:text="${name}"></span></h1>
+    <div class="p-4 mb-10 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        <h1 class="text-gray-500">Welcome to Dashboard! <span th:text="${name}"></span></h1>
     </div>
+
+    <div class="grid gap-4 xl:grid-cols-3 2xl:grid-cols-3">
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <h2 class="text-gray-500 text-lg font-semibold mb-4">Test Case Status</h2>
+            <canvas id="statusDateChart" class="w-full max-w-4xl mx-auto"></canvas>
+        </div>
+
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-1 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <h2 class="text-gray-500 text-lg font-semibold mb-4">Test Case Priority</h2>
+            <canvas id="priorityDonutChart" class="w-full h-64"></canvas>
+        </div>
+    </div>
+
+
+
+
 </main>
 
+<script layout:fragment="script">
+    fetch('/reports/chart-data')
+        .then(response => response.json())
+        .then(data => {
+            const grouped = {};
 
+            data.forEach(item => {
+                const { status, creationDate, count } = item;
+                if (!grouped[status]) grouped[status] = {};
+                grouped[status][creationDate] = count;
+            });
+
+            const labels = [...new Set(data.map(item => item.creationDate))].sort();
+            const statuses = Object.keys(grouped);
+
+            const datasets = statuses.map((status, idx) => {
+                const color = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'][idx % 6];
+                return {
+                    label: status,
+                    data: labels.map(label => grouped[status][label] || 0),
+                    backgroundColor: color,
+                };
+            });
+
+            new Chart(document.getElementById('statusDateChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Test Cases by Status and Creation Date'
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+
+    async function loadPriorityDonutChart() {
+        const response = await fetch('/reports/priority-chart-data');
+        const data = await response.json();
+
+        const ctx = document.getElementById('priorityDonutChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: data.map(d => d.priority),
+                datasets: [{
+                    data: data.map(d => d.count),
+                    backgroundColor: ['#34d399', '#facc15', '#f87171'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Test Case Priorities'
+                    }
+                }
+            }
+        });
+    }
+
+    loadPriorityDonutChart();
+</script>
 </body>
 </html>
