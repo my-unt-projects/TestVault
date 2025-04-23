@@ -1,14 +1,13 @@
 package com.fantasticsix.testvault.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -26,5 +25,15 @@ public class Module {
     private List<TestCase> testCases = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "project_id", nullable = true)
     private Project project;
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "moduleId=" + moduleId +
+                ", moduleName='" + moduleName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

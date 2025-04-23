@@ -21,6 +21,7 @@ public class TestCase {
     @Column(nullable = false)
     private String title;
 
+    @Lob
     private String description;
 
     @Enumerated(EnumType.STRING)
@@ -62,6 +63,7 @@ public class TestCase {
     private Module module;
 
     @ManyToOne
+    @JoinColumn(name="project_id")
     private Project project;
 
     public enum Priority {

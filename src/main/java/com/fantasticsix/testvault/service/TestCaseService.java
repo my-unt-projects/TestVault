@@ -13,4 +13,5 @@ public interface TestCaseService {
     List<TestCase> getByModuleId(Long moduleId);
     List<TestCase> getAll();
     TestCaseDto getTestCaseById(Long id);
+    void deleteTestCaseById(Long id);
 }

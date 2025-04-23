@@ -34,7 +34,9 @@
             <tbody>
             <tr class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900"
                 th:each="testCase : ${testCases}">
-                <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.title}"></td>
+                <td>
+                    <a class="px-4 py-2 text-gray-800 dark:text-gray-100" th:href="@{/tests/{id}(id=${testCase.testCaseId})}" th:text="${testCase.title}"></a>
+                </td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.priority}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100" th:text="${testCase.status}"></td>
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
@@ -42,8 +44,26 @@
                 <td class="px-4 py-2 text-gray-800 dark:text-gray-100"
                     th:text="${testCase.assignedToEmail} ?: 'Unassigned'"></td>
                 <td class="px-4 py-2">
-                    <a class="text-blue-600 dark:text-blue-400 hover:underline"
-                       th:href="@{/tests/edit/{id}(id=${testCase.testCaseId})}">Edit</a>
+                    <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                       th:href="@{/tests/edit/{id}(id=${testCase.testCaseId})}">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
+                            <path clip-rule="evenodd"
+                                  d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                        Edit</a>
+                    <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
+                       th:href="@{/tests/delete/{id}(id=${testCase.testCaseId})}"
+                       onclick="confirmDelete(event, this.href)">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                        Delete
+                    </a>
                 </td>
             </tr>
             </tbody>
@@ -51,4 +71,25 @@
     </section>
 </main>
 </body>
+<script layout:fragment="script">
+    function confirmDelete(event, deleteUrl) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded',
+                cancelButton: 'text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
+            },
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl; // Redirect to the delete URL
+            }
+        });
+    }
+</script>
 </html>

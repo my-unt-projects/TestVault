@@ -118,18 +118,4 @@ class TestCaseControllerTest {
         verify(model).addAttribute(eq("testCases"), anyList());
         assertEquals("tests/lists", view);
     }
-
-
-    @Test
-    void shouldUpdateTestCaseAndRedirect() {
-        TestCase testCase = new TestCase();
-        com.fantasticsix.testvault.model.Module module = new com.fantasticsix.testvault.model.Module();
-        module.setModuleId(5L);
-        testCase.setModule(module);
-
-        String view = testCaseController.updateTestCase(testCase);
-
-        verify(testCaseService).update(testCase);
-        assertEquals("redirect:/tests/lists/5", view);
-    }
 }

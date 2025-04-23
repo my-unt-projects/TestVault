@@ -130,4 +130,9 @@ public class TestCaseServiceImpl implements TestCaseService {
 
         return testCase;
     }
+
+    @Override
+    public void deleteTestCaseById(Long id) {
+        testCaseRepository.deleteById(id);
+    }
 }
