@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -36,9 +37,16 @@ public class ModuleController {
                         .projectName(module.getProject().getProjectName())
                         .build()
                 )
-                .collect(Collectors.toList());
+                .toList();
 
-        model.addAttribute("modules", modules);
+        Map<String, List<ModuleDto>> groupedModules = modules.stream()
+                .collect(Collectors.groupingBy(module -> {
+                    String project = module.getProjectName();
+                    return project != null ? project : "No Project";
+                }));
+
+        model.addAttribute("projectModulesMap", groupedModules);
+
         return "modules/list";
     }
 

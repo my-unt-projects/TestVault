@@ -170,4 +170,10 @@ public class TestCaseController {
         model.addAttribute("tags", tagService.getAll());
         return "tests/show";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTestCase(@PathVariable Long id) {
+        testCaseService.delete(id);
+        return "redirect:/tests/all";
+    }
 }
