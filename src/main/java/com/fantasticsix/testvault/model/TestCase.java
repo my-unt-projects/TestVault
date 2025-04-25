@@ -73,4 +73,10 @@ public class TestCase {
     public enum Status {
         NEW, IN_PROGRESS, COMPLETED, ON_HOLD, TODO, DONE
     }
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.creationDate = new Date();
+    }
 }
