@@ -46,6 +46,7 @@ public class DataSeeder {
             User admin = new User();
             admin.setName("John Doe");
             admin.setEmail("john@testvault.com");
+            admin.setEnabled(true);
             admin.setPassword(passwordEncoder.encode("12345"));
             admin.setRoles(Collections.singletonList(roleAdmin));
 
@@ -57,6 +58,7 @@ public class DataSeeder {
             User user = new User();
             user.setName("Mary Smith");
             user.setEmail("mary@testvault.com");
+            user.setEnabled(true);
             user.setPassword(passwordEncoder.encode("12345"));
             user.setRoles(Collections.singletonList(roleUser));
 

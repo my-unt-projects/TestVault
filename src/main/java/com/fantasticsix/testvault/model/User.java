@@ -37,6 +37,8 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
+    private boolean enabled;
+
 //    @OneToMany(mappedBy = "sentTo", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Notification> notifications = new ArrayList<>();
 }
