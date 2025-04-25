@@ -9,6 +9,8 @@ import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.*;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,7 @@ public class TestCaseController {
     private final ModuleService moduleService;
     private final ProjectService projectService;
     private final TestCaseRepository testCaseRepository;
+    private final EmailService emailService;
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
@@ -40,6 +43,10 @@ public class TestCaseController {
         return "tests/create";
     }
 
+    private String getLoggedInUserEmail() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
 
     @PostMapping("/create")
     public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
@@ -51,10 +58,8 @@ public class TestCaseController {
         testCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
         testCase.setDueDate(testCaseDto.getDueDate());
 
-        if (testCaseDto.getAssignedToEmail() != null) {
-            Optional<User> assignedUser = userService.findByEmail(testCaseDto.getAssignedToEmail());
-            testCase.setAssignedTo(assignedUser.orElse(null));
-        }
+        String loggedInUserEmail = getLoggedInUserEmail();
+
 
         if (testCaseDto.getModuleId() != null) {
             testCase.setModule(moduleService.get(testCaseDto.getModuleId()));
@@ -71,6 +76,17 @@ public class TestCaseController {
                     .filter(tag -> testCaseDto.getTagIds().contains(tag.getTagId()))
                     .toList();
             testCase.setTags(selectedTags);
+        }
+
+        if (testCaseDto.getAssignedToEmail() != null) {
+            Optional<User> assignedUser = userService.findByEmail(testCaseDto.getAssignedToEmail());
+            assignedUser.ifPresent(user -> {
+                testCase.setAssignedTo(user);
+
+                if (!user.getEmail().equalsIgnoreCase(loggedInUserEmail)) {
+                    emailService.sendAssignmentNotification(user, testCase);
+                }
+            });
         }
 
         testCaseService.save(testCase, attachmentUuids);
@@ -90,9 +106,21 @@ public class TestCaseController {
         existingTestCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
         existingTestCase.setDueDate(testCaseDto.getDueDate());
 
+        String loggedInUserEmail = getLoggedInUserEmail();
+        User previousAssignee = existingTestCase.getAssignedTo();
+
         if (testCaseDto.getAssignedToEmail() != null) {
-            Optional<User> assignedUser = userService.findByEmail(testCaseDto.getAssignedToEmail());
-            existingTestCase.setAssignedTo(assignedUser.orElse(null));
+            Optional<User> newAssigneeOpt = userService.findByEmail(testCaseDto.getAssignedToEmail());
+            newAssigneeOpt.ifPresent(newAssignee -> {
+                existingTestCase.setAssignedTo(newAssignee);
+
+                boolean isDifferentUser = previousAssignee == null || !previousAssignee.getEmail().equalsIgnoreCase(newAssignee.getEmail());
+                boolean notLoggedInUser = !newAssignee.getEmail().equalsIgnoreCase(loggedInUserEmail);
+
+                if (isDifferentUser && notLoggedInUser) {
+                    emailService.sendAssignmentNotification(newAssignee, existingTestCase);
+                }
+            });
         }
 
         if (testCaseDto.getModuleId() != null) {
