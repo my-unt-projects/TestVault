@@ -49,7 +49,6 @@ public class TestCaseController {
         testCase.setDescription(testCaseDto.getDescription());
         testCase.setPriority(TestCase.Priority.valueOf(testCaseDto.getPriority()));
         testCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
-        testCase.setCreationDate(testCaseDto.getCreationDate());
         testCase.setDueDate(testCaseDto.getDueDate());
 
         if (testCaseDto.getAssignedToEmail() != null) {
@@ -89,7 +88,6 @@ public class TestCaseController {
         existingTestCase.setDescription(testCaseDto.getDescription());
         existingTestCase.setPriority(TestCase.Priority.valueOf(testCaseDto.getPriority()));
         existingTestCase.setStatus(TestCase.Status.valueOf(testCaseDto.getStatus()));
-        existingTestCase.setCreationDate(testCaseDto.getCreationDate());
         existingTestCase.setDueDate(testCaseDto.getDueDate());
 
         if (testCaseDto.getAssignedToEmail() != null) {

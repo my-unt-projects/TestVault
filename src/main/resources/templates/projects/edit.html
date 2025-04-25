@@ -18,7 +18,7 @@
                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                               dark:focus:ring-blue-600 transition-colors" th:field="*{projectName}"
-                       type="text">
+                       type="text" required>
             </div>
 
             <!-- Description -->
@@ -28,7 +28,7 @@
                                  focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                  dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                  dark:focus:ring-blue-600 transition-colors" rows="3"
-                          th:field="*{description}"></textarea>
+                          th:field="*{description}" required></textarea>
             </div>
 
             <!-- Start Date -->
@@ -38,7 +38,7 @@
                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                               dark:focus:ring-blue-600 transition-colors" th:field="*{startDate}"
-                       type="date">
+                       type="date" required>
             </div>
 
             <!-- Client Name -->
@@ -48,7 +48,7 @@
                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                               dark:focus:ring-blue-600 transition-colors" th:field="*{clientName}"
-                       type="text">
+                       type="text" required>
             </div>
 
             <!-- Project Manager Dropdown -->
@@ -58,7 +58,7 @@
                                focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                dark:focus:ring-blue-600 transition-colors"
-                        th:field="*{projectManager.id}">
+                        th:field="*{projectManager.id}" required>
                     <option value="">Select a Manager</option>
                     <option th:each="manager : ${managers}"
                             th:selected="${manager.id == project.projectManager?.id}"
@@ -74,7 +74,7 @@
                                focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                dark:focus:ring-blue-600 transition-colors"
-                        th:field="*{status}">
+                        th:field="*{status}" required>
                     <option th:each="status : ${statusOptions}"
                             th:text="${status}"
                             th:value="${status}"></option>

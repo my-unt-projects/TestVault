@@ -127,14 +127,14 @@
                     </div>
 
                     <!-- Creation Date -->
-                    <div class="mt-4">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Creation Date</label>
-                        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
-                                      focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
-                                      dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
-                                      dark:focus:ring-blue-600 transition-colors" th:field="*{creationDate}"
-                               type="date">
-                    </div>
+<!--                    <div class="mt-4">-->
+<!--                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Creation Date</label>-->
+<!--                        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm-->
+<!--                                      focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600-->
+<!--                                      dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500-->
+<!--                                      dark:focus:ring-blue-600 transition-colors" th:field="*{creationDate}"-->
+<!--                               type="date">-->
+<!--                    </div>-->
 
                     <!-- Due Date -->
                     <div class="mt-4">
@@ -193,19 +193,19 @@
                     <input id="attachmentUuids" name="attachmentUuids" type="hidden"/>
 
                     <!-- Tags -->
-                    <div class="mt-4">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tags</label>
-                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
-                                       focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
-                                       dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
-                                       dark:focus:ring-blue-600 transition-colors" multiple size="4"
-                                th:field="*{tagIds}">
-                            <option th:each="tag : ${tags}"
-                                    th:text="${tag.name}"
-                                    th:value="${tag.tagId}">
-                            </option>
-                        </select>
-                    </div>
+<!--                    <div class="mt-4">-->
+<!--                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tags</label>-->
+<!--                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm-->
+<!--                                       focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600-->
+<!--                                       dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500-->
+<!--                                       dark:focus:ring-blue-600 transition-colors" multiple size="4"-->
+<!--                                th:field="*{tagIds}">-->
+<!--                            <option th:each="tag : ${tags}"-->
+<!--                                    th:text="${tag.name}"-->
+<!--                                    th:value="${tag.tagId}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
                 </div>
             </div>
         </form>

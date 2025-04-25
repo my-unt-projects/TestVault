@@ -21,7 +21,7 @@
                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
                               focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                               dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
-                              dark:focus:ring-blue-600 transition-colors">
+                              dark:focus:ring-blue-600 transition-colors" required>
         <!-- Error message -->
         <div th:if="${#fields.hasErrors('moduleName')}" class="text-red-500 text-sm">
           <span th:errors="*{moduleName}"></span>
@@ -35,7 +35,7 @@
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
                                  focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                  dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
-                                 dark:focus:ring-blue-600 transition-colors"></textarea>
+                                 dark:focus:ring-blue-600 transition-colors" required></textarea>
         <!-- Error message -->
         <div th:if="${#fields.hasErrors('description')}" class="text-red-500 text-sm">
           <span th:errors="*{description}"></span>
@@ -49,7 +49,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
                                focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
-                               dark:focus:ring-blue-600 transition-colors">
+                               dark:focus:ring-blue-600 transition-colors" required>
           <option value="">Select a Project</option>
           <option th:each="project : ${projects}"
                   th:value="${project.id}"

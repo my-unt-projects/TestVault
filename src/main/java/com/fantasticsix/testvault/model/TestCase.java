@@ -1,5 +1,6 @@
 package com.fantasticsix.testvault.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,6 +43,7 @@ public class TestCase {
 
     @ManyToOne
     @JoinColumn(name = "assigned_to", referencedColumnName = "id")
+    @JsonIgnore
     private User assignedTo;
 
     @ManyToMany
@@ -50,20 +52,25 @@ public class TestCase {
             joinColumns = @JoinColumn(name = "test_case_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    @JsonIgnore
     private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Attachment> attachments = new ArrayList<>();
 
     @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "module_id", nullable = true)
+    @JsonIgnore
     private Module module;
 
     @ManyToOne
     @JoinColumn(name="project_id")
+    @JsonIgnore
     private Project project;
 
     public enum Priority {
@@ -72,5 +79,11 @@ public class TestCase {
 
     public enum Status {
         NEW, IN_PROGRESS, COMPLETED, ON_HOLD, TODO, DONE
+    }
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.creationDate = new Date();
     }
 }
