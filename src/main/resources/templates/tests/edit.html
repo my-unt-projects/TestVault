@@ -24,7 +24,7 @@
     <section>
         <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Update Test Case</h1>
 
-        <form class="space-y-6" method="post" th:action="@{/tests/update}" th:object="${testCaseDto}">
+        <form class="space-y-6" method="post" th:action="@{/tests/update}" th:object="${testCaseDto}" onsubmit="return validateTinyMCE()">
 
             <!-- CSRF Token -->
             <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
@@ -59,6 +59,9 @@
                         <div class="text-red-500 text-sm" th:if="${#fields.hasErrors('description')}">
                             <span th:errors="*{description}"></span>
                         </div>
+                        <div id="description-error" style="color: red; font-size: 0.9em; display: none;">
+                            Description is required.
+                        </div>
                     </div>
                     <div class="mt-8">
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attachments</label>
@@ -73,7 +76,7 @@
                                        focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                        dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                        dark:focus:ring-blue-600 transition-colors"
-                                th:field="*{priority}">
+                                th:field="*{priority}" required>
                             <option disabled selected value="">Select priority</option>
                             <option value="LOW">Low</option>
                             <option value="MEDIUM">Medium</option>
@@ -91,7 +94,7 @@
                                        focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                        dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                        dark:focus:ring-blue-600 transition-colors"
-                                th:field="*{status}">
+                                th:field="*{status}" required>
                             <option disabled selected value="">Select status</option>
                             <option value="TODO">To Do</option>
                             <option value="IN_PROGRESS">In Progress</option>
@@ -119,7 +122,7 @@
                                       focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                       dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                       dark:focus:ring-blue-600 transition-colors" th:field="*{dueDate}"
-                               type="date">
+                               type="date" required>
                     </div>
                     <div class="mt-4">
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Associated Project</label>
@@ -127,7 +130,7 @@
                                        focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                        dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                        dark:focus:ring-blue-600 transition-colors" id="projectDropdown"
-                                th:field="*{projectId}">
+                                th:field="*{projectId}" required>
                             <option value="">Select a Project</option>
                             <option th:each="project : ${projects}"
                                     th:text="${project.projectName}"
@@ -142,7 +145,7 @@
                                        focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                        dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                        dark:focus:ring-blue-600 transition-colors" id="moduleDropdown"
-                                th:field="*{moduleId}">
+                                th:field="*{moduleId}" required>
                             <option th:text="*{moduleName}" th:value="*{moduleId}">Selected Module</option>
                         </select>
                     </div>
@@ -154,7 +157,7 @@
                                        focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
                                        dark:bg-gray-700 dark:text-gray-300 dark:focus:border-blue-500
                                        dark:focus:ring-blue-600 transition-colors"
-                                th:field="*{assignedToEmail}">
+                                th:field="*{assignedToEmail}" required>
                             <option disabled selected value="">Select user</option>
                             <option th:each="user : ${users}"
                                     th:text="${user.name + ' (' + user.email + ')'}"
@@ -439,6 +442,21 @@
         height: 500,
         skin: isDarkMode ? 'oxide-dark' : 'oxide',
         content_css: isDarkMode ? 'dark' : 'default',
+        setup: function (editor) {
+            editor.on('change keyup', function () {
+                tinymce.triggerSave();
+                document.getElementById('description-error').style.display = 'none';
+            });
+        }
     });
+
+    function validateTinyMCE() {
+        const content = tinymce.get("description").getContent({ format: "text" }).trim();
+        if (!content) {
+            document.getElementById('description-error').style.display = 'block';
+            return false;
+        }
+        return true;
+    }
 </script>
 </html>

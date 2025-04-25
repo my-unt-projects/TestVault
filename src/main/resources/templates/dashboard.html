@@ -53,6 +53,21 @@
                 <canvas id="statusPriorityChart" class="w-full h-80"></canvas>
             </div>
 
+            <div class="overflow-y-auto max-h-96 border border-gray-200 rounded-lg shadow" style="max-height: 436px">
+                <table class="min-w-full mt-6 text-sm text-left text-gray-500 dark:text-gray-400 table-auto border-collapse">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3 border-b">Title</th>
+                        <th class="px-6 py-3 border-b">Due Date</th>
+                        <th class="px-6 py-3 border-b">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="upcomingDeadlinesTable" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- JS will populate this -->
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
     </div>
@@ -252,12 +267,13 @@
     fetch('/reports/upcoming-deadlines')
         .then(res => res.json())
         .then(data => {
-            const tbody = document.querySelector('#upcomingDeadlinesTable tbody');
+            const tbody = document.querySelector('#upcomingDeadlinesTable');
             data.forEach(tc => {
                 const tr = document.createElement('tr');
+                const formattedDate = new Date(tc.dueDate).toLocaleDateString('en-CA');
                 tr.innerHTML = `
                         <td class="px-6 py-4">${tc.title}</td>
-                        <td class="px-6 py-4">${tc.dueDate}</td>
+                        <td class="px-6 py-4">${formattedDate}</td>
                         <td class="px-6 py-4">${tc.status}</td>
                     `;
                 tbody.appendChild(tr);
