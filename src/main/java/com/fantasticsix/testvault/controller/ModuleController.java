@@ -58,6 +58,7 @@ public class ModuleController {
 
         List<Project> projects = projectService.getAllProjects();
         model.addAttribute("projects", projects);
+        model.addAttribute("title", "Create Module");
 
         return "modules/create";
     }
@@ -98,6 +99,7 @@ public class ModuleController {
 
         model.addAttribute("module", moduleDto);
         model.addAttribute("projects", projects);
+        model.addAttribute("title", "Edit Module");
 
         return "modules/edit";
     }
