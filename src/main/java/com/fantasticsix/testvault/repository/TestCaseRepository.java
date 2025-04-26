@@ -15,8 +15,8 @@ import java.util.List;
 @Repository
 public interface TestCaseRepository extends JpaRepository<TestCase, Long>, JpaSpecificationExecutor<TestCase> {
     List<TestCase> getTestCasesByModule(Module module);
-    @Query(value = "SELECT status, DATE_FORMAT(creation_date, '%Y-%m-%d') AS creationDate, COUNT(*) AS count " +
-            "FROM test_case GROUP BY status, DATE_FORMAT(creation_date, '%Y-%m-%d')", nativeQuery = true)
+    @Query(value = "SELECT status, TO_CHAR(creation_date, 'YYYY-MM-DD') AS creationDate, COUNT(*) AS count " +
+            "FROM test_case GROUP BY status, TO_CHAR(creation_date, 'YYYY-MM-DD')", nativeQuery = true)
     List<Object[]> countByStatusAndCreationDate();
 
 

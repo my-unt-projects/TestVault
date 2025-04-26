@@ -1,22 +1,48 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql_container
+#  mysql:
+#    image: mysql:latest
+#    container_name: mysql_container
+#    restart: unless-stopped
+#    environment:
+#      MYSQL_ROOT_PASSWORD: secret
+#      MYSQL_DATABASE: TestVault
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - data:/var/lib/mysql
+#    networks:
+#      - my_network
+
+  postgresql:
+    image: 'bitnami/postgresql:latest'
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: TestVault
+      POSTGRESQL_DATABASE: TestVault
+      POSTGRESQL_USERNAME: root
+      POSTGRESQL_PASSWORD: secret
     ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - "5432:5432"
     networks:
-      - mysql_network
+      - my_network
 
+  testvault:
+    image: testvault-app
+    container_name: testvault
+    environment:
+      DB_URL: jdbc:postgresql://postgresql:5432/TestVault
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      MAIL_USERNAME: noreply.testvault@gmail.com
+      MAIL_PASSWORD: rrct vkjt bnqj hwln
+    networks:
+      - my_network
+    ports:
+      - "8080:8080"
+    restart: always
 volumes:
-  mysql_data: {}
+  data: {}
 
 networks:
-  mysql_network:
+  my_network:

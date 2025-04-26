@@ -7,6 +7,7 @@ import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.ReportGenerator;
 import com.fantasticsix.testvault.service.TestCaseService;
 import com.itextpdf.text.DocumentException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,8 +43,10 @@ public class ReportController {
         reportGenerator.generateReport(testCases, response.getOutputStream());
     }
 
+    //test case status over time
     @GetMapping("/chart-data")
     @ResponseBody
+    @Transactional
     public List<StatusDateCountDTO> getChartData() {
         List<Object[]> rawData = testCaseRepository.countByStatusAndCreationDate();
         return rawData.stream().map(obj ->
@@ -101,6 +104,7 @@ public class ReportController {
 
     @GetMapping("/upcoming-deadlines")
     @ResponseBody
+    @Transactional
     public List<TestCase> getUpcomingDeadlines() {
         LocalDate today = LocalDate.now();
         LocalDate nextWeek = today.plusDays(7);

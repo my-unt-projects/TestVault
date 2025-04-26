@@ -9,6 +9,7 @@ import com.fantasticsix.testvault.model.Tag;
 import com.fantasticsix.testvault.model.TestCase;
 import com.fantasticsix.testvault.repository.*;
 import com.fantasticsix.testvault.service.TestCaseService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,7 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
+    @Transactional
     public TestCase save(TestCase testCase, List<String> attachmentUuids) {
         TestCase savedTestCase = testCaseRepository.save(testCase);
         associateAttachmentsWithTestCase(savedTestCase, attachmentUuids);

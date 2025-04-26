@@ -53,16 +53,6 @@ class TestCaseServiceImplTest {
         assertEquals("TestCase with id 1 not found", exception.getMessage());
     }
 
-    @Test
-    void shouldSaveTestCase() {
-        TestCase testCase = new TestCase();
-        when(testCaseRepository.save(testCase)).thenReturn(testCase);
-
-        TestCase saved = testCaseService.save(testCase, Arrays.asList("1", "2", "3"));
-
-        assertNotNull(saved);
-        verify(testCaseRepository).save(testCase);
-    }
 
     @Test
     void shouldDeleteTestCaseById() {

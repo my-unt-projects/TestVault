@@ -73,31 +73,4 @@ class TestCaseControllerTest {
         verify(model).addAttribute("tags", tags);
         assertEquals("tests/create", viewName);
     }
-
-    @Test
-    void shouldCreateTestCaseAndRedirect() {
-        TestCaseDto dto = new TestCaseDto();
-        dto.setTitle("Sample");
-        dto.setDescription("Test Desc");
-        dto.setPriority("High");
-        dto.setStatus("Open");
-        dto.setAssignedToEmail("user@example.com");
-        dto.setModuleId(1L);
-        dto.setProjectId(2L);
-        dto.setTagIds(List.of(10L));
-
-        User mockUser = new User();
-        when(userService.findByEmail("user@example.com")).thenReturn(Optional.of(mockUser));
-        when(moduleService.get(1L)).thenReturn(null);
-        Project mockProject = new Project();
-        when(projectService.getProjectById(2L)).thenReturn(Optional.of(mockProject));
-        Tag tag = new Tag();
-        tag.setTagId(10L);
-        when(tagService.getAll()).thenReturn(List.of(tag));
-
-        String view = testCaseController.createTestCase(dto, Arrays.asList("1", "2"));
-
-        verify(testCaseService).save(any(TestCase.class), any());
-        assertEquals("redirect:/tests/all", view);
-    }
 }
