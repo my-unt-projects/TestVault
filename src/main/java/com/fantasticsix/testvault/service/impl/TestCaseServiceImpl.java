@@ -11,9 +11,11 @@ import com.fantasticsix.testvault.service.TestCaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import jakarta.persistence.criteria.Predicate;
 
 @Service
 @RequiredArgsConstructor
@@ -134,5 +136,27 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Override
     public void deleteTestCaseById(Long id) {
         testCaseRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TestCase> getFilteredTestCases(Long projectId, Long moduleId, String status, String assignedToEmail) {
+        return testCaseRepository.findAll((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (projectId != null) {
+                predicates.add(cb.equal(root.get("project").get("id"), projectId));
+            }
+            if (moduleId != null) {
+                predicates.add(cb.equal(root.get("module").get("moduleId"), moduleId));
+            }
+            if (status != null && !status.isEmpty()) {
+                predicates.add(cb.equal(root.get("status"), TestCase.Status.valueOf(status)));
+            }
+            if (assignedToEmail != null && !assignedToEmail.isEmpty()) {
+                predicates.add(cb.equal(root.get("assignedTo").get("email"), assignedToEmail));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
     }
 }
