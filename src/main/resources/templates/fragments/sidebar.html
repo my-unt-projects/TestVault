@@ -66,7 +66,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_DEV', 'ROLE_QA')">
+                        <li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER')">
                             <button aria-controls="dropdown-manage"
                                     class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
                                     data-collapse-toggle="dropdown-manage" type="button">
