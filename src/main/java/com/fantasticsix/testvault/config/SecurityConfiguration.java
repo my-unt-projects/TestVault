@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfiguration {
 
     @Bean
@@ -29,7 +31,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
                         .requestMatchers("/login/**", "/register/**").permitAll()
+                        .requestMatchers("/projects", "/modules/by-project/**").hasAnyRole("ADMIN", "MANAGER", "DEV", "QA")
+                        .requestMatchers("/projects/**", "/modules/**").hasAnyRole("ADMIN", "MANAGER")
                         .requestMatchers("/users").hasRole("ADMIN")
+                        .requestMatchers("/reports/**").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/tests/**").hasAnyRole("ADMIN", "MANAGER", "DEV", "QA")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

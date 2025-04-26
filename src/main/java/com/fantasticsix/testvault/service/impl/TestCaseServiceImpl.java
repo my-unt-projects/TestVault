@@ -1,6 +1,7 @@
 package com.fantasticsix.testvault.service.impl;
 
 
+import com.fantasticsix.testvault.exceptions.TestCaseNotFoundException;
 import com.fantasticsix.testvault.dto.TestCaseDto;
 import com.fantasticsix.testvault.model.Attachment;
 import com.fantasticsix.testvault.model.Module;
@@ -83,7 +84,7 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Override
     public TestCaseDto getTestCaseById(Long id) {
-        return testCaseRepository.findById(id).map(this::convertToDto).orElse(null);
+        return testCaseRepository.findById(id).map(this::convertToDto).orElseThrow(()-> new TestCaseNotFoundException("TestCase with id " + id + " not found"));
     }
 
     private TestCaseDto convertToDto(TestCase testCase) {
