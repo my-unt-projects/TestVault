@@ -145,9 +145,40 @@ public class TestCaseController {
     }
 
 
+//    @GetMapping("/all")
+//    public String getAllTestCases(Model model) {
+//        List<TestCase> testCases = testCaseService.getAll();
+//
+//        List<TestCaseDto> testCaseDtos = testCases.stream().map(testCase ->
+//                TestCaseDto.builder()
+//                        .title(testCase.getTitle())
+//                        .testCaseId(testCase.getTestCaseId())
+//                        .description(testCase.getDescription())
+//                        .priority(String.valueOf(testCase.getPriority()))
+//                        .status(String.valueOf(testCase.getStatus()))
+//                        .creationDate(testCase.getCreationDate())
+//                        .dueDate(testCase.getDueDate())
+//                        .assignedToEmail(testCase.getAssignedTo() != null ? testCase.getAssignedTo().getEmail() : null)
+//                        .moduleId(testCase.getModule() != null ? testCase.getModule().getModuleId() : null)
+//                        .moduleName(testCase.getModule() != null ? testCase.getModule().getModuleName() : null)
+//                        .tagIds(testCase.getTags() != null
+//                                ? testCase.getTags().stream().map(Tag::getTagId).toList()
+//                                : null)
+//                        .build()
+//        ).toList();
+//
+//        model.addAttribute("testCases", testCaseDtos);
+//        return "tests/lists";
+//    }
     @GetMapping("/all")
-    public String getAllTestCases(Model model) {
-        List<TestCase> testCases = testCaseService.getAll();
+    public String getAllTestCases(
+            @RequestParam(required = false) Long projectId,
+            @RequestParam(required = false) Long moduleId,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String assignedTo,
+            Model model) {
+
+        List<TestCase> testCases = testCaseService.getFilteredTestCases(projectId, moduleId, status, assignedTo);
 
         List<TestCaseDto> testCaseDtos = testCases.stream().map(testCase ->
                 TestCaseDto.builder()
@@ -168,6 +199,16 @@ public class TestCaseController {
         ).toList();
 
         model.addAttribute("testCases", testCaseDtos);
+        model.addAttribute("projectId", projectId);
+        model.addAttribute("moduleId", moduleId);
+        model.addAttribute("status", status);
+        model.addAttribute("assignedTo", assignedTo);
+
+        // Add necessary lists for dropdowns
+        model.addAttribute("projects", projectService.getAllProjects());
+        model.addAttribute("modules", moduleService.getAll());
+        model.addAttribute("users", userService.findAllUsers());
+
         return "tests/lists";
     }
 

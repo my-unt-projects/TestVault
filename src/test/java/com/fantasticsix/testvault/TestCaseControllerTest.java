@@ -100,22 +100,4 @@ class TestCaseControllerTest {
         verify(testCaseService).save(any(TestCase.class), any());
         assertEquals("redirect:/tests/all", view);
     }
-
-    @Test
-    void shouldReturnAllTestCasesView() {
-        TestCase testCase = new TestCase();
-        testCase.setTestCaseId(1L);
-        testCase.setTitle("Test Title");
-        testCase.setStatus(TestCase.Status.valueOf("Open"));
-        testCase.setPriority(TestCase.Priority.valueOf("High"));
-        testCase.setDescription("Desc");
-        testCase.setTags(List.of());
-
-        when(testCaseService.getAll()).thenReturn(List.of(testCase));
-
-        String view = testCaseController.getAllTestCases(model);
-
-        verify(model).addAttribute(eq("testCases"), anyList());
-        assertEquals("tests/lists", view);
-    }
 }

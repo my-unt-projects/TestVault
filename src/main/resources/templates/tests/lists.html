@@ -8,13 +8,51 @@
     <section>
 
         <div class="sm:flex">
-            <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+            <div class="hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
                 <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">All Test Cases</h1>
             </div>
+            <form method="get" th:action="@{/tests/all}" class="mb-4 ml-6 flex flex-wrap gap-4">
+                <div>
+                    <label for="projectId" class="font-semibold">Project:</label>
+                    <select id="projectId" name="projectId" class="border px-2 py-1 rounded">
+                        <option value="">All Projects</option>
+                        <option th:each="p : ${projects}" th:value="${p.id}" th:selected="${p.id} == ${projectId}" th:text="${p.projectName}"></option>
+                    </select>
+
+                    <label for="moduleId" class="font-semibold">Module:</label>
+                    <select id="moduleId" name="moduleId" class="border px-2 py-1 rounded">
+                        <option value="">All Modules</option>
+                        <option th:each="m : ${modules}" th:value="${m.moduleId}" th:selected="${m.moduleId} == ${moduleId}" th:text="${m.moduleName}"></option>
+                    </select>
+
+                    <label for="status" class="font-semibold">Status:</label>
+                    <select id="status" name="status" class="border px-2 py-1 rounded">
+                        <option value="">All Statuses</option>
+                        <option value="NEW" th:selected="${status} == 'NEW'">NEW</option>
+                        <option value="IN_PROGRESS" th:selected="${status} == 'IN_PROGRESS'">IN PROGRESS</option>
+                        <option value="COMPLETED" th:selected="${status} == 'COMPLETED'">COMPLETED</option>
+                        <option value="ON_HOLD" th:selected="${status} == 'ON_HOLD'">ON HOLD</option>
+                        <option value="TODO" th:selected="${status} == 'TODO'">TODO</option>
+                        <option value="DONE" th:selected="${status} == 'DONE'">DONE</option>
+                    </select>
+
+                    <label for="assignedTo" class="font-semibold">Assignee:</label>
+                    <select id="assignedTo" name="assignedTo" class="border px-2 py-1 rounded">
+                        <option value="">All Assignees</option>
+                        <option th:each="u : ${users}" th:value="${u.email}" th:selected="${u.email} == ${assignedTo}" th:text="${u.name}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                    </svg>
+                    Filter
+                </button>
+            </form>
             <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                 <a href="/reports/generate" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
                     <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd"></path></svg>
-                    Export as PDF
+                    Export All as PDF
                 </a>
             </div>
 
