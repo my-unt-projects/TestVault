@@ -7,6 +7,8 @@ import com.fantasticsix.testvault.model.TestCase;
 import com.fantasticsix.testvault.repository.AttachmentRepository;
 import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.TestCaseService;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/attachments")
+@Slf4j
 public class AttachmentController {
 
     @Autowired
@@ -33,22 +36,32 @@ public class AttachmentController {
 
     // Upload Attachment
     @PostMapping("/upload")
+    @Transactional
     public ResponseEntity<Map<String, String>> uploadAttachment(@RequestParam("file") MultipartFile file) {
+        Map<String, String> response = new HashMap<>();
         try {
+            // Check if file is empty
+            if (file.isEmpty()) {
+                response.put("message", "No file selected");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+
             // Create a new attachment instance
             Attachment attachment = new Attachment();
             attachment.setFileName(file.getOriginalFilename());
             attachment.setFileType(file.getContentType());
-            attachment.setData(file.getBytes());
+
+            byte[] fileBytes = file.getBytes();
+            log.info("File bytes length: " + fileBytes.length);
+
+            attachment.setData(fileBytes);
             // UUID will be automatically generated when the object is created
             attachmentRepository.save(attachment);
 
-            Map<String, String> response = new HashMap<>();
             response.put("uuid", attachment.getUuid());
             response.put("message", "Upload successful");
             return ResponseEntity.ok(response);
         } catch (IOException e) {
-            Map<String, String> response = new HashMap<>();
             response.put("message", "Upload failed!");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -61,18 +74,20 @@ public class AttachmentController {
     }
 
     @GetMapping("/{uuid}/view")
+    @Transactional
     public ResponseEntity<byte[]> viewAttachment(@PathVariable String uuid) {
         Attachment attachment = attachmentRepository.findByUuid(uuid)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(attachment.getFileType()))
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + sanitizeFilename(attachment.getFileName()) + "\"")
                 .body(attachment.getData());
     }
 
 
     @GetMapping("/testcases/{testCaseId}")
+    @Transactional
     public List<AttachmentDto> getTestCaseAttachments(@PathVariable Long testCaseId) {
         TestCase testCase = testCaseRepository.findById(testCaseId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

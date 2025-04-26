@@ -40,9 +40,9 @@ public class SecurityConfiguration {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/dashboard")
+                        .failureUrl("/login?error")
+                        .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
                 .rememberMe(rememberMe -> rememberMe

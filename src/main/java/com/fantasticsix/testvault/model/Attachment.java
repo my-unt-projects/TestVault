@@ -17,8 +17,8 @@ public class Attachment {
 
     private String fileName;
     private String fileType;
+
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
     private byte[] data;
 
     @Column(unique = true, nullable = false)

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@lombok.extern.slf4j.Slf4j
 @Controller
 @RequestMapping("/tests")
 @RequiredArgsConstructor
@@ -85,7 +86,11 @@ public class TestCaseController {
                 testCase.setAssignedTo(user);
 
                 if (!user.getEmail().equalsIgnoreCase(loggedInUserEmail)) {
-                    emailService.sendAssignmentNotification(user, testCase);
+                    try {
+                        emailService.sendAssignmentNotification(user, testCase);
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
                 }
             });
         }
