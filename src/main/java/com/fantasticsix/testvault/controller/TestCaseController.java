@@ -8,6 +8,7 @@ import com.fantasticsix.testvault.model.User;
 import com.fantasticsix.testvault.repository.TestCaseRepository;
 import com.fantasticsix.testvault.service.*;
 import groovy.util.logging.Slf4j;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -52,7 +53,7 @@ public class TestCaseController {
 
     @PostMapping("/create")
     public String createTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
-                                 @RequestParam List<String> attachmentUuids) {
+                                 @RequestParam List<String> attachmentUuids, HttpServletRequest request) {
         TestCase testCase = new TestCase();
         testCase.setTitle(testCaseDto.getTitle());
         testCase.setDescription(testCaseDto.getDescription());
@@ -87,7 +88,7 @@ public class TestCaseController {
 
                 if (!user.getEmail().equalsIgnoreCase(loggedInUserEmail)) {
                     try {
-                        emailService.sendAssignmentNotification(user, testCase);
+                        emailService.sendAssignmentNotification(user, testCase, request);
                     } catch (Exception e) {
                         log.error(e.getMessage(), e);
                     }
@@ -103,7 +104,7 @@ public class TestCaseController {
 
     @PostMapping("/update")
     public String updateTestCase(@ModelAttribute("testCaseDto") TestCaseDto testCaseDto,
-                                 @RequestParam List<String> attachmentUuids) {
+                                 @RequestParam List<String> attachmentUuids, HttpServletRequest request) {
         TestCase existingTestCase = testCaseRepository.findById(testCaseDto.getTestCaseId()).orElseThrow(() -> new IllegalArgumentException("Invalid test case"));
 
         existingTestCase.setTitle(testCaseDto.getTitle());
@@ -124,7 +125,7 @@ public class TestCaseController {
                 boolean notLoggedInUser = !newAssignee.getEmail().equalsIgnoreCase(loggedInUserEmail);
 
                 if (isDifferentUser && notLoggedInUser) {
-                    emailService.sendAssignmentNotification(newAssignee, existingTestCase);
+                    emailService.sendAssignmentNotification(newAssignee, existingTestCase, request);
                 }
             });
         }
