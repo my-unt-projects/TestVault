@@ -40,8 +40,8 @@
             Create a Free Account
         </h2>
         <div th:if="${param.success}">
-            <div class="alert alert-info">
-                You have successfully registered our app.!
+            <div class="alert alert-info text-green-400">
+                You have successfully registered our app.! <a href="@{/login}" class="text-primary-700 hover:underline dark:text-primary-500">Login here</a> to continue
             </div>
         </div>
 
