@@ -197,7 +197,7 @@ public class TestCaseController {
                                 : null)
                         .build()
         ).toList();
-
+        model.addAttribute("title", "All Test Cases");
         model.addAttribute("testCases", testCaseDtos);
         model.addAttribute("projectId", projectId);
         model.addAttribute("moduleId", moduleId);
@@ -217,6 +217,7 @@ public class TestCaseController {
     @GetMapping("/edit/{id}")
     public String editTestCase(@PathVariable Long id, Model model) {
         TestCaseDto testCaseDto = testCaseService.getTestCaseById(id);
+        model.addAttribute("title", "Edit Test Case");
         model.addAttribute("testCaseDto", testCaseDto);
         model.addAttribute("projects", projectService.getAllProjects());
 
@@ -230,6 +231,7 @@ public class TestCaseController {
     @GetMapping("/{id}")
     public String showTestCase(@PathVariable Long id, Model model) {
         TestCaseDto testCaseDto = testCaseService.getTestCaseById(id);
+        model.addAttribute("title", testCaseDto.getTitle());
         model.addAttribute("testCaseDto", testCaseDto);
         model.addAttribute("projects", projectService.getAllProjects());
 
