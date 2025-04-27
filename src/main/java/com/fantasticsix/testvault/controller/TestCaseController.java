@@ -152,31 +152,7 @@ public class TestCaseController {
     }
 
 
-//    @GetMapping("/all")
-//    public String getAllTestCases(Model model) {
-//        List<TestCase> testCases = testCaseService.getAll();
-//
-//        List<TestCaseDto> testCaseDtos = testCases.stream().map(testCase ->
-//                TestCaseDto.builder()
-//                        .title(testCase.getTitle())
-//                        .testCaseId(testCase.getTestCaseId())
-//                        .description(testCase.getDescription())
-//                        .priority(String.valueOf(testCase.getPriority()))
-//                        .status(String.valueOf(testCase.getStatus()))
-//                        .creationDate(testCase.getCreationDate())
-//                        .dueDate(testCase.getDueDate())
-//                        .assignedToEmail(testCase.getAssignedTo() != null ? testCase.getAssignedTo().getEmail() : null)
-//                        .moduleId(testCase.getModule() != null ? testCase.getModule().getModuleId() : null)
-//                        .moduleName(testCase.getModule() != null ? testCase.getModule().getModuleName() : null)
-//                        .tagIds(testCase.getTags() != null
-//                                ? testCase.getTags().stream().map(Tag::getTagId).toList()
-//                                : null)
-//                        .build()
-//        ).toList();
-//
-//        model.addAttribute("testCases", testCaseDtos);
-//        return "tests/lists";
-//    }
+
     @GetMapping("/all")
     public String getAllTestCases(
             @RequestParam(required = false) Long projectId,

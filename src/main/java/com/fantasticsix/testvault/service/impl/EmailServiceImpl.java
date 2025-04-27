@@ -40,7 +40,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private String getHtmlContent(User assignedTo, TestCase testCase,  HttpServletRequest request) {
-        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+//        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         return """
             <html>
             <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
@@ -54,7 +54,7 @@ public class EmailServiceImpl implements EmailService {
                         <tr><td style="padding: 8px; font-weight: bold;">Priority:</td><td>%s</td></tr>
                         <tr><td style="padding: 8px; font-weight: bold;">Due Date:</td><td>%s</td></tr>
                     </table>
-                    <p style="margin-top: 20px;">You can view and manage the test case <a href="%s/tests/%d" style="color: #2980b9; text-decoration: none;">here</a>.</p>
+                    <p style="margin-top: 20px;">You can view and manage the test case <a href="https://testvault.onrender.com/tests/%d" style="color: #2980b9; text-decoration: none;">here</a>.</p>
                     <p>Thanks,<br/>TestVault Team</p>
                 </div>
             </body>
@@ -65,7 +65,6 @@ public class EmailServiceImpl implements EmailService {
                 testCase.getProject().getProjectName(),
                 testCase.getPriority().name(),
                 testCase.getDueDate(),
-                baseUrl,
                 testCase.getTestCaseId()
         );
     }
