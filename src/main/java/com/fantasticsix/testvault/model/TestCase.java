@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class TestCase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long testCaseId;
 
     @Column(nullable = false)

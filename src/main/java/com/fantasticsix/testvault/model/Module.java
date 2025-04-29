@@ -11,10 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Module {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long moduleId;
+    public class Module {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long moduleId;
 
     @Column(nullable = false)
     private String moduleName;
